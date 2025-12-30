@@ -816,9 +816,9 @@ const SpeakingItem = ({ speak, isDarkMode }: { speak: Speaking, isDarkMode: bool
     
     <div className="relative p-2 flex gap-3">
       {/* Left column: Date + Thumbnail */}
-      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 flex-shrink-0">
+      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 flex-shrink-0 max-w-[120px] sm:max-w-none">
         {/* Date */}
-        <div className={`flex-shrink-0 w-20 sm:w-28 flex items-center justify-center`}>
+        <div className={`flex-shrink-0 w-full sm:w-28 flex items-center justify-center`}>
           <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
             isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
           }`}>
@@ -828,12 +828,12 @@ const SpeakingItem = ({ speak, isDarkMode }: { speak: Speaking, isDarkMode: bool
 
         {/* Thumbnail */}
         {speak.imageUrl ? (
-          <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-video rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
+          <div className={`block flex-shrink-0 w-full sm:w-28 aspect-video rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
             <img src={speak.imageUrl} alt={speak.title} className="w-full h-full object-cover" />
           </div>
         ) : (
           <div
-            className={`flex flex-shrink-0 w-20 sm:w-28 aspect-video rounded overflow-hidden relative items-center justify-center ${
+            className={`flex flex-shrink-0 w-full sm:w-28 aspect-video rounded overflow-hidden relative items-center justify-center ${
               isDarkMode
                 ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
                 : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
@@ -910,9 +910,9 @@ const InterviewItem = ({ interview, isDarkMode }: { interview: Interview, isDark
   >
     <div className="flex gap-3">
       {/* Left column: Date + Thumbnail */}
-      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 flex-shrink-0">
+      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 flex-shrink-0 max-w-[120px] sm:max-w-none">
         {/* Date */}
-        <div className={`flex-shrink-0 w-20 sm:w-28 flex items-center justify-center`}>
+        <div className={`flex-shrink-0 w-full sm:w-28 flex items-center justify-center`}>
           <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
             isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
           }`}>
@@ -922,12 +922,12 @@ const InterviewItem = ({ interview, isDarkMode }: { interview: Interview, isDark
 
         {/* Thumbnail */}
         {interview.imageUrl ? (
-          <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-video rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
+          <div className={`block flex-shrink-0 w-full sm:w-28 aspect-video rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
             <img src={interview.imageUrl} alt={interview.title} className="w-full h-full object-cover" />
           </div>
         ) : (
           <div
-            className={`flex flex-shrink-0 w-20 sm:w-28 aspect-video rounded overflow-hidden relative items-center justify-center ${
+            className={`flex flex-shrink-0 w-full sm:w-28 aspect-video rounded overflow-hidden relative items-center justify-center ${
               isDarkMode
                 ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
                 : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
@@ -974,9 +974,9 @@ const WritingItem = ({ title, source, date, link, imageUrl, isDarkMode }: any) =
   >
     <div className="flex gap-3">
       {/* Left column: Date + Thumbnail */}
-      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 flex-shrink-0">
+      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 flex-shrink-0 max-w-[120px] sm:max-w-none">
         {/* Date */}
-        <div className={`flex-shrink-0 w-20 sm:w-28 flex items-center justify-center`}>
+        <div className={`flex-shrink-0 w-full sm:w-28 flex items-center justify-center`}>
           <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
             isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
           }`}>
@@ -986,12 +986,12 @@ const WritingItem = ({ title, source, date, link, imageUrl, isDarkMode }: any) =
 
         {/* Thumbnail */}
         {imageUrl ? (
-          <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-video rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
+          <div className={`block flex-shrink-0 w-full sm:w-28 aspect-video rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
             <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
           </div>
         ) : (
           <div
-            className={`flex flex-shrink-0 w-20 sm:w-28 aspect-video rounded overflow-hidden relative items-center justify-center ${
+            className={`flex flex-shrink-0 w-full sm:w-28 aspect-video rounded overflow-hidden relative items-center justify-center ${
               isDarkMode
                 ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
                 : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
