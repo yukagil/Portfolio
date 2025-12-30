@@ -810,40 +810,43 @@ const SpeakingItem = ({ speak, isDarkMode }: { speak: Speaking, isDarkMode: bool
         : 'border-transparent group-hover:border-black group-hover:shadow-[2px_2px_0_0_#000]'
     }`}></div>
     
-    <div className="relative p-2 flex flex-col sm:flex-row gap-3">
-      {/* Date */}
-      <div className={`flex-shrink-0`}>
-        <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
-          isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
-        }`}>
-          {speak.date}
-        </span>
-      </div>
+    <div className="relative p-2 flex gap-3">
+      {/* Left column: Date + Thumbnail */}
+      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 flex-shrink-0">
+        {/* Date */}
+        <div className={`flex-shrink-0`}>
+          <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
+            isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
+          }`}>
+            {speak.date}
+          </span>
+        </div>
 
-      {/* Thumbnail */}
-      {speak.imageUrl ? (
-        <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
-          <img src={speak.imageUrl} alt={speak.title} className="w-full h-full object-cover" />
-        </div>
-      ) : (
-        <div
-          className={`flex flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden relative items-center justify-center ${
-            isDarkMode
-              ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
-              : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
-          }`}
-          aria-hidden="true"
-        >
+        {/* Thumbnail */}
+        {speak.imageUrl ? (
+          <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
+            <img src={speak.imageUrl} alt={speak.title} className="w-full h-full object-cover" />
+          </div>
+        ) : (
           <div
-            className={`absolute inset-0 ${
+            className={`flex flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden relative items-center justify-center ${
               isDarkMode
-                ? 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
-                : 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
+                ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
+                : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
             }`}
-          />
-          <Mic2 size={14} className={isDarkMode ? 'text-gray-300' : 'text-gray-700'} />
-        </div>
-      )}
+            aria-hidden="true"
+          >
+            <div
+              className={`absolute inset-0 ${
+                isDarkMode
+                  ? 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
+                  : 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
+              }`}
+            />
+            <Mic2 size={14} className={isDarkMode ? 'text-gray-300' : 'text-gray-700'} />
+          </div>
+        )}
+      </div>
       
       {/* Content */}
       <div className="flex-1 min-w-0 flex flex-col justify-center py-0.5">
@@ -902,39 +905,42 @@ const InterviewItem = ({ interview, isDarkMode }: { interview: Interview, isDark
     }`}
   >
     <div className="flex gap-3">
-      {/* Date */}
-      <div className={`flex-shrink-0`}>
-        <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
-          isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
-        }`}>
-          {interview.date}
-        </span>
-      </div>
+      {/* Left column: Date + Thumbnail */}
+      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 flex-shrink-0">
+        {/* Date */}
+        <div className={`flex-shrink-0`}>
+          <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
+            isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
+          }`}>
+            {interview.date}
+          </span>
+        </div>
 
-      {/* Thumbnail */}
-      {interview.imageUrl ? (
-        <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
-          <img src={interview.imageUrl} alt={interview.title} className="w-full h-full object-cover" />
-        </div>
-      ) : (
-        <div
-          className={`flex flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden relative items-center justify-center ${
-            isDarkMode
-              ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
-              : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
-          }`}
-          aria-hidden="true"
-        >
+        {/* Thumbnail */}
+        {interview.imageUrl ? (
+          <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
+            <img src={interview.imageUrl} alt={interview.title} className="w-full h-full object-cover" />
+          </div>
+        ) : (
           <div
-            className={`absolute inset-0 ${
+            className={`flex flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden relative items-center justify-center ${
               isDarkMode
-                ? 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
-                : 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
+                ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
+                : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
             }`}
-          />
-          <MessageSquare size={14} className={isDarkMode ? 'text-gray-300' : 'text-gray-700'} />
-        </div>
-      )}
+            aria-hidden="true"
+          >
+            <div
+              className={`absolute inset-0 ${
+                isDarkMode
+                  ? 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
+                  : 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
+              }`}
+            />
+            <MessageSquare size={14} className={isDarkMode ? 'text-gray-300' : 'text-gray-700'} />
+          </div>
+        )}
+      </div>
 
       {/* Content */}
       <div className="flex-1 min-w-0 flex flex-col justify-center py-0.5">
@@ -963,39 +969,42 @@ const WritingItem = ({ title, date, link, imageUrl, isDarkMode }: any) => (
     }`}
   >
     <div className="flex gap-3">
-      {/* Date */}
-      <div className={`flex-shrink-0`}>
-        <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
-          isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
-        }`}>
-          {date}
-        </span>
-      </div>
+      {/* Left column: Date + Thumbnail */}
+      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 flex-shrink-0">
+        {/* Date */}
+        <div className={`flex-shrink-0`}>
+          <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
+            isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
+          }`}>
+            {date}
+          </span>
+        </div>
 
-      {/* Thumbnail */}
-      {imageUrl ? (
-        <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
-          <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
-        </div>
-      ) : (
-        <div
-          className={`flex flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden relative items-center justify-center ${
-            isDarkMode
-              ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
-              : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
-          }`}
-          aria-hidden="true"
-        >
+        {/* Thumbnail */}
+        {imageUrl ? (
+          <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
+            <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
+          </div>
+        ) : (
           <div
-            className={`absolute inset-0 ${
+            className={`flex flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden relative items-center justify-center ${
               isDarkMode
-                ? 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
-                : 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
+                ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
+                : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
             }`}
-          />
-          <BookOpen size={14} className={isDarkMode ? 'text-gray-300' : 'text-gray-700'} />
-        </div>
-      )}
+            aria-hidden="true"
+          >
+            <div
+              className={`absolute inset-0 ${
+                isDarkMode
+                  ? 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
+                  : 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
+              }`}
+            />
+            <BookOpen size={14} className={isDarkMode ? 'text-gray-300' : 'text-gray-700'} />
+          </div>
+        )}
+      </div>
 
       {/* Content */}
       <div className="flex-1 min-w-0 flex flex-col justify-center py-0.5">
