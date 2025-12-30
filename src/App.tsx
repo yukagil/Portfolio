@@ -54,7 +54,6 @@ interface CompanyExperience {
   totalPeriod: string;
   roles: Role[];
   description: string;
-  tags: string[];
   isCurrent: boolean;
   branchType?: 'main' | 'feature';
 }
@@ -170,7 +169,7 @@ const Portfolio = () => {
             roles: [
               {
                 title: "執行役員／Chief Product Officer",
-                period: "2024.06 - Current",
+                period: "2024.07 - Current",
                 description: "プロダクト戦略の統括および組織づくりをリード。"
               },
               {
@@ -180,7 +179,6 @@ const Portfolio = () => {
               }
             ],
             description: "",
-            tags: ['Product Management', 'Organizational Design', 'DX'],
             isCurrent: true,
             branchType: 'main'
           },
@@ -198,9 +196,7 @@ const Portfolio = () => {
               }
             ],
             description: "新規事業開発およびプロダクトマネジメント業務に従事。Mutureと並行して活動。",
-            tags: ['New Business', 'Co-Creation'],
-            isCurrent: true,
-            branchType: 'feature'
+            isCurrent: true
           },
           {
             id: "showcase",
@@ -212,16 +208,15 @@ const Portfolio = () => {
               {
                 title: "VP of Product",
                 period: "2022.03 - 2023.02",
-                description: "中期経営計画として5ヵ年ロードマップを策定。SMB中心からエンタープライズ戦略への転換を推進する中、SaaS市場の冬の時代が到来。領域を絞り計画を前倒しするための戦略再構築を行う。"
+                description: "中期経営計画として5ヵ年ロードマップを策定。SMB中心からエンタープライズへの転換を推進する中「SaaS冬の時代」が到来。グロース重視から利益重視の戦略に再転換を行う。"
               },
               {
                 title: "Product Manager",
                 period: "2020.02 - 2022.03",
-                description: "1人目PdMとして入社し、PoC中のテーブルオーダープロダクトを担当。コロナ禍を契機に、テイクアウトやデリバリーを含むオールインワン戦略へ転換。システムのリアーキテクチャやリブランディングを含む一連のフェーズでプロダクトチームをリード。"
+                description: "1人目PdMとして入社。PoC中のイートインプロダクトを担当するもコロナ禍に突入したためテイクアウトやデリバリーを含むオールインワン戦略へ転換。システムリアーキやリブランディングまでの一連においてプロダクトチームをリード。"
               }
             ],
             description: "",
-            tags: ['Product Strategy', '0→1', 'SaaS', 'Rebranding'],
             isCurrent: false
           },
           {
@@ -234,16 +229,15 @@ const Portfolio = () => {
               {
                 title: "Software Engineer / Project Manager",
                 period: "2018.11 - 2020.02",
-                description: "アライアンス案件におけるグローバルプラットフォームの開発に従事。ID基盤、アカウントサービスなどを担当。"
+                description: "アライアンス案件におけるグローバルプラットフォームの開発に従事。開発者向けのID基盤やアカウントサービスなどを担当。"
               },
               {
                 title: "Software Engineer",
                 period: "2016.04 - 2018.11",
-                description: "iOS/Android向けの電子書籍サービス、インディーズ作家の発掘プラットフォームの開発に従事。"
+                description: "iOS/Android向けの電子書籍サービス、インディーズ作品のプラットフォーム開発に従事。"
               }
             ],
             description: "",
-            tags: ['Software Engineering', 'Project Management', 'Mobile Apps'],
             isCurrent: false
           }
         ],
@@ -310,9 +304,6 @@ const Portfolio = () => {
     );
   }
 
-  const mutureExp = data.experiences.find(e => e.id === 'muture');
-  const maruiExp = data.experiences.find(e => e.id === 'marui');
-  const otherExps = data.experiences.filter(e => e.id !== 'muture' && e.id !== 'marui');
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-[#202020] text-gray-200' : 'bg-[#F0F0F0] text-gray-800'} font-sans relative`}>
@@ -539,46 +530,7 @@ const Portfolio = () => {
             }`}></div>
 
             <div className="relative space-y-16">
-              
-              {/* Special Layout for Muture & Marui Unite */}
-              <div className="relative">
-                
-                {/* Marui Unite (Top/Future Branch) */}
-                {maruiExp && (
-                  <div className="relative ml-16 mb-12">
-                    {/* SVG Connector */}
-                    <div className="absolute -left-[43px] top-9 w-16 h-20 pointer-events-none">
-                       <svg className="w-full h-full overflow-visible">
-                         <path 
-                           d="M 0 80 C 0 40, 64 40, 64 0" 
-                           fill="none" 
-                           stroke={isDarkMode ? "#2563eb" : "#3b82f6"} // Blue
-                           strokeWidth="4"
-                         />
-                       </svg>
-                    </div>
-
-                    <ExperienceItem 
-                      experience={maruiExp} 
-                      isDarkMode={isDarkMode} 
-                    />
-                  </div>
-                )}
-
-                {/* Muture (Main/Base) */}
-                {mutureExp && (
-                  <div className="relative">
-                    <ExperienceItem 
-                      experience={mutureExp} 
-                      isDarkMode={isDarkMode} 
-                    />
-                  </div>
-                )}
-
-              </div>
-
-              {/* Other Experiences */}
-              {otherExps.map((exp) => (
+              {data.experiences.map((exp) => (
                 <ExperienceItem 
                   key={exp.id}
                   experience={exp}
@@ -714,7 +666,7 @@ const SocialLink = ({ href, icon, label, isDarkMode, color }: any) => (
 );
 
 const ExperienceItem = ({ experience, isDarkMode }: any) => {
-  const { company, companyDescription, website, totalPeriod, roles, tags, description } = experience;
+  const { company, companyDescription, website, totalPeriod, roles, description } = experience;
   
   // 常に濃い青を使用
   const accentColor = isDarkMode ? 'bg-blue-600' : 'bg-blue-500';
@@ -789,21 +741,6 @@ const ExperienceItem = ({ experience, isDarkMode }: any) => {
               {description}
            </p>
         )}
-        
-        <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t-2 border-dashed border-gray-200 dark:border-gray-700">
-          {tags.map((tag: string) => (
-            <span 
-              key={tag} 
-              className={`text-xs font-bold px-2 py-1 rounded border ${
-                isDarkMode 
-                  ? 'bg-blue-900/30 border-blue-800 text-blue-300' 
-                  : 'bg-blue-50 border-blue-200 text-blue-700'
-              }`}
-            >
-              #{tag}
-            </span>
-          ))}
-        </div>
       </div>
     </div>
   );
