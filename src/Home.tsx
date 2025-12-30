@@ -318,7 +318,7 @@ const Portfolio = () => {
           : 'bg-white/95 border-black shadow-[0_4px_0_0_rgba(0,0,0,0.1)]'
       }`}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center h-16 relative">
             <div className="flex-shrink-0 font-extrabold text-2xl tracking-tighter flex items-center gap-2">
               <span className={`w-8 h-8 flex items-center justify-center rounded-lg border-2 ${isDarkMode ? 'bg-blue-600 border-blue-400' : 'bg-blue-500 border-black text-white'}`}>
                 <Tent size={18} />
@@ -328,29 +328,30 @@ const Portfolio = () => {
               </span>
             </div>
             
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
-                <Link
-                  to="/projects"
-                  className={`px-3 py-2 rounded-lg text-sm font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 ${
-                    isDarkMode 
-                      ? 'text-gray-300 hover:text-white hover:bg-gray-700' 
-                      : 'text-gray-600 hover:text-black hover:bg-gray-100 hover:shadow-[2px_2px_0_0_rgba(0,0,0,0.1)]'
-                  }`}
-                >
-                  Projects
-                </Link>
-                <button
-                  onClick={toggleTheme}
-                  className={`p-2 rounded-lg border-2 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none ${
-                    isDarkMode 
-                      ? 'bg-gray-800 border-gray-600 text-yellow-400 shadow-[2px_2px_0_0_#4b5563]' 
-                      : 'bg-yellow-400 border-black text-black shadow-[2px_2px_0_0_#000]'
-                  }`}
-                >
-                  {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-                </button>
-              </div>
+            <div className="hidden md:flex items-center space-x-4 absolute left-1/2 -translate-x-1/2">
+              <Link
+                to="/projects"
+                className={`px-3 py-2 rounded-lg text-sm font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 ${
+                  isDarkMode 
+                    ? 'text-gray-300 hover:text-white hover:bg-gray-700' 
+                    : 'text-gray-600 hover:text-black hover:bg-gray-100 hover:shadow-[2px_2px_0_0_rgba(0,0,0,0.1)]'
+                }`}
+              >
+                Projects
+              </Link>
+            </div>
+
+            <div className="hidden md:flex items-center ml-auto">
+              <button
+                onClick={toggleTheme}
+                className={`p-2 rounded-lg border-2 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none ${
+                  isDarkMode 
+                    ? 'bg-gray-800 border-gray-600 text-yellow-400 shadow-[2px_2px_0_0_#4b5563]' 
+                    : 'bg-yellow-400 border-black text-black shadow-[2px_2px_0_0_#000]'
+                }`}
+              >
+                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
             </div>
 
             <div className="md:hidden flex items-center gap-3">
