@@ -19,9 +19,11 @@ import {
   FileText,
   Video,
   Link as LinkIcon,
-  Gamepad2,
   RefreshCw,
-  Building2
+  Building2,
+  Lightbulb,
+  Globe,
+  Tent
 } from 'lucide-react';
 
 // ビルド時に生成された静的データをインポート
@@ -100,7 +102,7 @@ interface PortfolioData {
     id: string;
     title: string;
     content: string;
-    iconType: 'users' | 'zap' | 'code' | 'briefcase';
+    iconType: 'users' | 'zap' | 'code' | 'briefcase' | 'lightbulb' | 'globe';
   }>;
   writings: Array<{
     id: string;
@@ -151,9 +153,7 @@ const Portfolio = () => {
         },
         socials: {
           twitter: "https://twitter.com/yukagil",
-          note: "https://note.com/yukagil",
-          linkedin: "https://www.linkedin.com/",
-          bento: "https://bento.me/yukagil"
+          linkedin: "https://www.linkedin.com/in/yuta-kanehara/",
         },
         experiences: [
           {
@@ -232,15 +232,15 @@ const Portfolio = () => {
           },
           {
             id: "p3",
-            title: "Engineer Background",
-            content: "エンジニア出身であることは私の強みです。技術的な実現可能性を肌感覚で理解しつつ、技術に寄りすぎずビジネスとユーザーの視点に立つバランスを大切にしています。",
-            iconType: 'code'
+            title: "Collective Mastery, Collective Impact",
+            content: "プロダクト・デザイン・エンジニアリングなど多様な専門性が協働し、お互いを高め合うことを大切にしています。個人ではなくチームとして、大きな価値を生み出します。",
+            iconType: 'lightbulb'
           },
           {
             id: "p4",
-            title: "User Centric",
-            content: "関わる全ての人が幸せであり、触れる全ての人の日常がより豊かになるようなものづくりを実践します。",
-            iconType: 'briefcase'
+            title: "Mutual Value, Mutual Growth",
+            content: "ユーザにも社会にも誠実であることを大切にしています。目の前の課題解決だけでなく、過去の文脈や意味を深く理解し、未来につながる持続可能なものづくりを実践します。",
+            iconType: 'globe'
           }
         ],
         // ビルド時に生成された静的データを使用
@@ -272,6 +272,8 @@ const Portfolio = () => {
       case 'zap': return <Zap className="text-yellow-500" />;
       case 'code': return <Code className="text-green-500" />;
       case 'briefcase': return <Briefcase className="text-purple-500" />;
+      case 'lightbulb': return <Lightbulb className="text-yellow-500" />;
+      case 'globe': return <Globe className="text-green-500" />;
       default: return <Users className="text-blue-500" />;
     }
   };
@@ -306,10 +308,10 @@ const Portfolio = () => {
           <div className="flex items-center justify-between h-16">
             <div className="flex-shrink-0 font-extrabold text-2xl tracking-tighter flex items-center gap-2">
               <span className={`w-8 h-8 flex items-center justify-center rounded-lg border-2 ${isDarkMode ? 'bg-blue-600 border-blue-400' : 'bg-blue-500 border-black text-white'}`}>
-                <Gamepad2 size={18} />
+                <Tent size={18} />
               </span>
               <span>
-                Yuta<span className="text-red-500">.</span>K
+                Yuta<span className="text-red-500">.</span>Kanehara
               </span>
             </div>
             
@@ -390,7 +392,7 @@ const Portfolio = () => {
 
       <main className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-12">
         {/* Hero Section */}
-        <section id="about" className="mb-24 animate-fade-in-up">
+        <section id="about" className="mb-16 animate-fade-in-up">
           <div className="flex flex-col-reverse md:flex-row items-start md:items-center justify-between gap-12">
             <div className="flex-1">
               <div className={`inline-block px-3 py-1 mb-4 text-xs font-bold tracking-widest rounded-full border-2 ${
@@ -398,7 +400,7 @@ const Portfolio = () => {
                   ? 'border-blue-400 text-blue-400 bg-blue-900/20' 
                   : 'border-black text-black bg-yellow-400'
               }`}>
-                PRODUCT MANAGER // CPO
+                PRODUCT MANAGER
               </div>
               <h1 className="text-5xl md:text-6xl font-black tracking-tight mb-6 leading-none">
                 {data.profile.role} <br />
@@ -436,9 +438,7 @@ const Portfolio = () => {
               
               <div className="flex flex-wrap gap-4 mb-8">
                 {data.socials.twitter && <SocialLink href={data.socials.twitter} icon={<Twitter size={20} />} label="Twitter" isDarkMode={isDarkMode} color="bg-blue-400" />}
-                {data.socials.note && <SocialLink href={data.socials.note} icon={<BookOpen size={20} />} label="Note" isDarkMode={isDarkMode} color="bg-green-400" />}
                 {data.socials.linkedin && <SocialLink href={data.socials.linkedin} icon={<Linkedin size={20} />} label="LinkedIn" isDarkMode={isDarkMode} color="bg-blue-600" />}
-                {data.socials.bento && <SocialLink href={data.socials.bento} icon={<ExternalLink size={20} />} label="Bento" isDarkMode={isDarkMode} color="bg-purple-400" />}
               </div>
 
               <div className="flex items-center text-sm font-bold font-mono">
@@ -470,31 +470,34 @@ const Portfolio = () => {
               <div className={`absolute -bottom-2 -left-2 px-3 py-1 rounded-full border-2 z-20 font-bold text-xs ${
                 isDarkMode ? 'bg-gray-800 border-green-400 text-green-400' : 'bg-red-500 border-black text-white'
               }`}>
-                PLAYER 1
+                @yukagil
               </div>
             </div>
           </div>
         </section>
 
-        {/* Philosophy Cards Integrated */}
-        <section className="mb-24">
-            <div className="grid md:grid-cols-3 gap-6">
-                {data.philosophies.map((phil, idx) => (
-                    <PhilosophyCard 
-                        key={phil.id}
-                        icon={getPhilosophyIcon(phil.iconType)}
-                        title={phil.title}
-                        content={phil.content}
-                        isDarkMode={isDarkMode}
-                        index={idx}
-                    />
-                ))}
-            </div>
+        {/* Philosophy Section */}
+        <section id="philosophy" className="mb-16">
+          <div className="mb-8">
+            <SectionTitle title="Philosophy" icon={<Zap size={24} />} isDarkMode={isDarkMode} />
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {data.philosophies.map((phil, idx) => (
+              <PhilosophyCard 
+                key={phil.id}
+                icon={getPhilosophyIcon(phil.iconType)}
+                title={phil.title}
+                content={phil.content}
+                isDarkMode={isDarkMode}
+                index={idx}
+              />
+            ))}
+          </div>
         </section>
 
         {/* Experience Section */}
-        <section id="experience" className="mb-32">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-10 gap-4">
+        <section id="experience" className="mb-16">
+          <div className="mb-6">
             <SectionTitle title="Experience" icon={<Briefcase size={24} />} isDarkMode={isDarkMode} />
           </div>
           
@@ -556,8 +559,10 @@ const Portfolio = () => {
         </section>
 
         {/* Selected Interviews Section */}
-        <section id="interviews" className="mb-32">
-          <SectionTitle title="Selected Interviews" icon={<MessageSquare size={24} />} isDarkMode={isDarkMode} />
+        <section id="interviews" className="mb-16">
+          <div className="mb-6">
+            <SectionTitle title="Selected Interviews" icon={<MessageSquare size={24} />} isDarkMode={isDarkMode} />
+          </div>
           <div className="grid gap-3">
             {data.interviews.map((interview) => (
               <InterviewItem 
@@ -570,8 +575,8 @@ const Portfolio = () => {
         </section>
 
         {/* Public Speaking Section */}
-        <section id="speaking" className="mb-32">
-          <div className="flex items-center mb-10">
+        <section id="speaking" className="mb-16">
+          <div className="mb-6">
             <SectionTitle title="Public Speaking" icon={<Mic2 size={24} />} isDarkMode={isDarkMode} />
           </div>
           <div className="grid gap-3">
@@ -586,8 +591,8 @@ const Portfolio = () => {
         </section>
 
         {/* Recent Writings Section */}
-        <section id="writings" className="mb-32">
-          <div className="flex items-center mb-10">
+        <section id="writings" className="mb-16">
+          <div className="mb-6">
             <SectionTitle title="Recent Writings" icon={<BookOpen size={24} />} isDarkMode={isDarkMode} />
           </div>
           
@@ -819,9 +824,9 @@ const SpeakingItem = ({ speak, isDarkMode }: { speak: Speaking, isDarkMode: bool
         : 'border-transparent group-hover:border-black group-hover:shadow-[2px_2px_0_0_#000]'
     }`}></div>
     
-    <div className="relative p-2 flex flex-col sm:flex-row sm:items-start gap-3">
+    <div className="relative p-2 flex flex-col sm:flex-row gap-3">
       {/* Date */}
-      <div className={`flex-shrink-0 pt-1`}>
+      <div className={`flex-shrink-0`}>
         <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
           isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
         }`}>
@@ -831,15 +836,15 @@ const SpeakingItem = ({ speak, isDarkMode }: { speak: Speaking, isDarkMode: bool
 
       {/* Thumbnail */}
       {speak.imageUrl ? (
-        <div className={`hidden sm:block flex-shrink-0 w-24 aspect-video rounded border-2 overflow-hidden ${isDarkMode ? 'border-gray-600' : 'border-black'}`}>
+        <div className={`hidden sm:block flex-shrink-0 w-28 aspect-[1.91/1] rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
           <img src={speak.imageUrl} alt={speak.title} className="w-full h-full object-cover" />
         </div>
       ) : (
         <div
-          className={`hidden sm:flex flex-shrink-0 w-24 aspect-video rounded border-2 overflow-hidden relative items-center justify-center ${
+          className={`hidden sm:flex flex-shrink-0 w-28 aspect-[1.91/1] rounded overflow-hidden relative items-center justify-center ${
             isDarkMode
-              ? 'border-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
-              : 'border-black bg-gradient-to-br from-gray-100 to-gray-200'
+              ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
+              : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
           }`}
           aria-hidden="true"
         >
@@ -855,13 +860,21 @@ const SpeakingItem = ({ speak, isDarkMode }: { speak: Speaking, isDarkMode: bool
       )}
       
       {/* Content */}
-      <div className="flex-1 min-w-0">
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-2 mb-1">
-          <a href={speak.mainLink} target="_blank" rel="noopener noreferrer" className={`text-sm font-bold group-hover:text-blue-500 transition-colors ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+      <div className="flex-1 min-w-0 flex flex-col justify-center py-0.5">
+        {/* Event Name */}
+        <div className={`text-xs font-bold leading-tight ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+          {speak.event}
+        </div>
+        
+        {/* Title */}
+        <div className="mb-1">
+          <a href={speak.mainLink} target="_blank" rel="noopener noreferrer" className={`text-sm font-bold leading-tight group-hover:text-blue-500 transition-colors ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
             {speak.title}
           </a>
-          
-          {/* Chips */}
+        </div>
+        
+        {/* Chips */}
+        <div className="flex flex-wrap items-center gap-2">
           {speak.relatedLinks && speak.relatedLinks.map((link, idx) => {
             let Icon = LinkIcon;
             if (link.type === 'slide') Icon = FileText;
@@ -886,10 +899,6 @@ const SpeakingItem = ({ speak, isDarkMode }: { speak: Speaking, isDarkMode: bool
             );
           })}
         </div>
-        <div className={`text-xs font-bold flex items-center ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
-          <span className={`inline-block w-2 h-2 rounded-full mr-2 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-300'}`}></span>
-          {speak.event}
-        </div>
       </div>
     </div>
   </div>
@@ -906,9 +915,9 @@ const InterviewItem = ({ interview, isDarkMode }: { interview: Interview, isDark
         : 'hover:bg-white hover:border-black hover:shadow-[2px_2px_0_0_#000]'
     }`}
   >
-    <div className="flex items-start gap-4">
+    <div className="flex gap-3">
       {/* Date */}
-      <div className={`flex-shrink-0 pt-1`}>
+      <div className={`flex-shrink-0`}>
         <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
           isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
         }`}>
@@ -918,15 +927,15 @@ const InterviewItem = ({ interview, isDarkMode }: { interview: Interview, isDark
 
       {/* Thumbnail */}
       {interview.imageUrl ? (
-        <div className={`hidden sm:block flex-shrink-0 w-24 aspect-video rounded border-2 overflow-hidden ${isDarkMode ? 'border-gray-600' : 'border-black'}`}>
+        <div className={`hidden sm:block flex-shrink-0 w-28 aspect-[1.91/1] rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
           <img src={interview.imageUrl} alt={interview.title} className="w-full h-full object-cover" />
         </div>
       ) : (
         <div
-          className={`hidden sm:flex flex-shrink-0 w-24 aspect-video rounded border-2 overflow-hidden relative items-center justify-center ${
+          className={`hidden sm:flex flex-shrink-0 w-28 aspect-[1.91/1] rounded overflow-hidden relative items-center justify-center ${
             isDarkMode
-              ? 'border-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
-              : 'border-black bg-gradient-to-br from-gray-100 to-gray-200'
+              ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
+              : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
           }`}
           aria-hidden="true"
         >
@@ -942,17 +951,16 @@ const InterviewItem = ({ interview, isDarkMode }: { interview: Interview, isDark
       )}
 
       {/* Content */}
-      <div className="flex-1 min-w-0">
-        <h3 className={`text-sm font-bold mb-1 group-hover:text-blue-500 transition-colors ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
-          {interview.title}
-        </h3>
-        <div className={`text-xs font-bold flex items-center ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
-          <MessageSquare size={12} className="mr-1.5" />
+      <div className="flex-1 min-w-0 flex flex-col justify-center py-0.5">
+        <div className={`text-xs font-bold leading-tight mb-0.5 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
           {interview.media}
         </div>
+        <h3 className={`text-sm font-bold leading-tight group-hover:text-blue-500 transition-colors ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+          {interview.title}
+        </h3>
       </div>
       
-      <ExternalLink size={16} className={`flex-shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity ${isDarkMode ? 'text-gray-500' : 'text-black'}`} />
+      <ExternalLink size={16} className={`flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity ${isDarkMode ? 'text-gray-500' : 'text-black'}`} />
     </div>
   </a>
 );
@@ -968,7 +976,7 @@ const WritingItem = ({ title, date, link, imageUrl, isDarkMode }: any) => (
         : 'hover:bg-white hover:border-black hover:shadow-[2px_2px_0_0_#000]'
     }`}
   >
-    <div className="flex items-center gap-4">
+    <div className="flex gap-3">
       {/* Date */}
       <div className={`flex-shrink-0`}>
         <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
@@ -980,15 +988,15 @@ const WritingItem = ({ title, date, link, imageUrl, isDarkMode }: any) => (
 
       {/* Thumbnail */}
       {imageUrl ? (
-        <div className={`hidden sm:block flex-shrink-0 w-24 aspect-video rounded border-2 overflow-hidden ${isDarkMode ? 'border-gray-600' : 'border-black'}`}>
+        <div className={`hidden sm:block flex-shrink-0 w-28 aspect-[1.91/1] rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
           <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
         </div>
       ) : (
         <div
-          className={`hidden sm:flex flex-shrink-0 w-24 aspect-video rounded border-2 overflow-hidden relative items-center justify-center ${
+          className={`hidden sm:flex flex-shrink-0 w-28 aspect-[1.91/1] rounded overflow-hidden relative items-center justify-center ${
             isDarkMode
-              ? 'border-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
-              : 'border-black bg-gradient-to-br from-gray-100 to-gray-200'
+              ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
+              : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
           }`}
           aria-hidden="true"
         >
@@ -1004,8 +1012,8 @@ const WritingItem = ({ title, date, link, imageUrl, isDarkMode }: any) => (
       )}
 
       {/* Content */}
-      <div className="flex-1 min-w-0">
-        <h3 className={`text-sm font-bold group-hover:text-blue-500 transition-colors line-clamp-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+      <div className="flex-1 min-w-0 flex flex-col justify-center py-0.5">
+        <h3 className={`text-sm font-bold leading-tight group-hover:text-blue-500 transition-colors line-clamp-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
           {title}
         </h3>
       </div>
