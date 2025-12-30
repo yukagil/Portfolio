@@ -196,7 +196,8 @@ const Portfolio = () => {
               }
             ],
             description: "新規事業開発およびプロダクトマネジメント業務に従事。Mutureと並行して活動。",
-            isCurrent: true
+            isCurrent: true,
+            branchType: 'feature'
           },
           {
             id: "showcase",
@@ -304,6 +305,10 @@ const Portfolio = () => {
     );
   }
 
+
+  const mutureExp = data.experiences.find(e => e.id === 'muture');
+  const maruiExp = data.experiences.find(e => e.id === 'marui');
+  const otherExps = data.experiences.filter(e => e.id !== 'muture' && e.id !== 'marui');
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-[#202020] text-gray-200' : 'bg-[#F0F0F0] text-gray-800'} font-sans relative`}>
@@ -530,7 +535,46 @@ const Portfolio = () => {
             }`}></div>
 
             <div className="relative space-y-16">
-              {data.experiences.map((exp) => (
+              
+              {/* Special Layout for Muture & Marui Unite */}
+              <div className="relative">
+                
+                {/* Marui Unite (Top/Future Branch) */}
+                {maruiExp && (
+                  <div className="relative ml-16 mb-12">
+                    {/* SVG Connector */}
+                    <div className="absolute -left-[43px] top-9 w-16 h-20 pointer-events-none">
+                       <svg className="w-full h-full overflow-visible">
+                         <path 
+                           d="M 0 80 C 0 40, 64 40, 64 0" 
+                           fill="none" 
+                           stroke={isDarkMode ? "#2563eb" : "#3b82f6"} // Blue
+                           strokeWidth="4"
+                         />
+                       </svg>
+                    </div>
+
+                    <ExperienceItem 
+                      experience={maruiExp} 
+                      isDarkMode={isDarkMode} 
+                    />
+                  </div>
+                )}
+
+                {/* Muture (Main/Base) */}
+                {mutureExp && (
+                  <div className="relative">
+                    <ExperienceItem 
+                      experience={mutureExp} 
+                      isDarkMode={isDarkMode} 
+                    />
+                  </div>
+                )}
+
+              </div>
+
+              {/* Other Experiences */}
+              {otherExps.map((exp) => (
                 <ExperienceItem 
                   key={exp.id}
                   experience={exp}
