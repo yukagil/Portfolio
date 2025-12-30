@@ -184,7 +184,7 @@ const Portfolio = () => {
           },
           {
             id: "marui",
-            company: "Marui Unite",
+            company: "marui unite",
             companyDescription: "丸井グループのデジタルプロダクト開発を行うテックカンパニー。「好き」とデジタルの力で新しい体験を共創する。",
             website: "https://marui-unite.co.jp/",
             totalPeriod: "2024.10 - Current",
@@ -762,7 +762,7 @@ const ExperienceItem = ({ experience, isDarkMode }: any) => {
         
         <div className="space-y-6 mt-4 mb-4">
           {roles.map((role: any, idx: number) => (
-            <div key={idx} className={`${roles.length > 1 ? 'pl-4 border-l-4 border-gray-200 dark:border-gray-700' : ''}`}>
+            <div key={idx} className="pl-4 border-l-4 border-gray-200 dark:border-gray-700">
                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-1">
                   <h4 className={`text-lg font-bold ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}>
                     {role.title}
