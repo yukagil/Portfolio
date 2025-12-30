@@ -277,14 +277,6 @@ const Portfolio = () => {
     }
   };
 
-  const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Philosophy', href: '#philosophy' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Interviews', href: '#interviews' },
-    { name: 'Speaking', href: '#speaking' },
-    { name: 'Writings', href: '#writings' },
-  ];
 
   const getPhilosophyIcon = (type: string) => {
     switch (type) {
@@ -338,19 +330,6 @@ const Portfolio = () => {
             
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className={`px-3 py-2 rounded-lg text-sm font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 ${
-                      isDarkMode 
-                        ? 'text-gray-300 hover:text-white hover:bg-gray-700' 
-                        : 'text-gray-600 hover:text-black hover:bg-gray-100 hover:shadow-[2px_2px_0_0_rgba(0,0,0,0.1)]'
-                    }`}
-                  >
-                    {link.name}
-                  </a>
-                ))}
                 <Link
                   to="/projects"
                   className={`px-3 py-2 rounded-lg text-sm font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 ${
@@ -402,20 +381,6 @@ const Portfolio = () => {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className={`px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t-2 ${isDarkMode ? 'bg-[#2a2a2a] border-gray-700' : 'bg-white border-black'}`}>
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className={`block px-3 py-2 rounded-lg text-base font-bold ${
-                    isDarkMode 
-                      ? 'text-gray-300 hover:bg-gray-700' 
-                      : 'text-gray-700 hover:bg-gray-100'
-                  }`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.name}
-                </a>
-              ))}
               <Link
                 to="/projects"
                 className={`block px-3 py-2 rounded-lg text-base font-bold ${
