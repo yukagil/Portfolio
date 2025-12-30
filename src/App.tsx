@@ -202,16 +202,21 @@ const Portfolio = () => {
             company: "Showcase Gig",
             companyDescription: "モバイルオーダープラットフォーム「O:der」を提供するベンチャー企業。デジタル化による次世代店舗体験を創出。",
             website: "https://www.showcase-gig.com/",
-            totalPeriod: "2020.02 - 2023.02",
+            totalPeriod: "2020.02 - 2023.03",
             roles: [
               {
                 title: "VP of Product",
-                period: "2020.02 - 2023.02",
-                description: "SaaSプロダクトの0→1グロースから、マルチプロダクト・プラットフォーム化への転換など、プロダクト戦略の策定から実行までを一貫して担う。"
+                period: "2022.03 - 2023.03",
+                description: "中期経営計画として5ヵ年ロードマップを策定。SMB中心からエンタープライズ戦略への転換を推進する中、SaaS市場の冬の時代が到来。領域を絞り計画を前倒しするための戦略再構築を行う。"
+              },
+              {
+                title: "Product Manager",
+                period: "2020.02 - 2022.03",
+                description: "1人目PdMとして入社し、PoC中のテーブルオーダープロダクトを担当。コロナ禍を契機に、テイクアウトやデリバリーを含むオールインワン戦略へ転換。システムのリアーキテクチャやリブランディングを含む一連のフェーズでプロダクトチームをリード。"
               }
             ],
-            description: "SaaSプロダクトの0→1グロースから、マルチプロダクト・プラットフォーム化への転換など、プロダクト戦略の策定から実行までを一貫して担う。",
-            tags: ['Product Strategy', 'Team Management', 'SaaS'],
+            description: "",
+            tags: ['Product Strategy', '0→1', 'SaaS', 'Rebranding'],
             isCurrent: false
           },
           {
@@ -223,12 +228,12 @@ const Portfolio = () => {
             roles: [
               {
                 title: "Software Engineer / Project Manager",
-                period: "2018.02 - 2020.02",
+                period: "2018.11 - 2020.02",
                 description: "アライアンス案件におけるグローバルプラットフォームの開発に従事。ID基盤、アカウントサービスなどを担当。"
               },
               {
                 title: "Software Engineer",
-                period: "2016.04 - 2018.02",
+                period: "2016.04 - 2018.11",
                 description: "iOS/Android向けの電子書籍サービス、インディーズ作家の発掘プラットフォームの開発に従事。"
               }
             ],
