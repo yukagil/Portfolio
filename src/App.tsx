@@ -222,13 +222,18 @@ const Portfolio = () => {
             totalPeriod: "2016.04 - 2020.02",
             roles: [
               {
+                title: "Software Engineer / Project Manager",
+                period: "2018.02 - 2020.02",
+                description: "アライアンス案件におけるグローバルプラットフォームの開発に従事。ID基盤、アカウントサービスなどを担当。"
+              },
+              {
                 title: "Software Engineer",
-                period: "2016.04 - 2020.02",
-                description: "コンシューマー向けアプリケーションや、アライアンス案件におけるグローバルプラットフォームの開発に従事。"
+                period: "2016.04 - 2018.02",
+                description: "iOS/Android向けの電子書籍サービス、インディーズ作家の発掘プラットフォームの開発に従事。"
               }
             ],
-            description: "コンシューマー向けアプリケーションや、アライアンス案件におけるグローバルプラットフォームの開発に従事。",
-            tags: ['Software Engineering', 'Mobile Apps', 'Career Pivot'],
+            description: "",
+            tags: ['Software Engineering', 'Project Management', 'Mobile Apps'],
             isCurrent: false
           }
         ],
