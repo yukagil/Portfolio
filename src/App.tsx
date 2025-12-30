@@ -814,7 +814,7 @@ const SpeakingItem = ({ speak, isDarkMode }: { speak: Speaking, isDarkMode: bool
       {/* Left column: Date + Thumbnail */}
       <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 flex-shrink-0">
         {/* Date */}
-        <div className={`flex-shrink-0`}>
+        <div className={`flex-shrink-0 w-20 sm:w-28 flex items-center justify-center`}>
           <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
             isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
           }`}>
@@ -908,7 +908,7 @@ const InterviewItem = ({ interview, isDarkMode }: { interview: Interview, isDark
       {/* Left column: Date + Thumbnail */}
       <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 flex-shrink-0">
         {/* Date */}
-        <div className={`flex-shrink-0`}>
+        <div className={`flex-shrink-0 w-20 sm:w-28 flex items-center justify-center`}>
           <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
             isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
           }`}>
@@ -957,7 +957,7 @@ const InterviewItem = ({ interview, isDarkMode }: { interview: Interview, isDark
   </a>
 );
 
-const WritingItem = ({ title, date, link, imageUrl, isDarkMode }: any) => (
+const WritingItem = ({ title, source, date, link, imageUrl, isDarkMode }: any) => (
   <a 
     href={link}
     target="_blank"
@@ -972,7 +972,7 @@ const WritingItem = ({ title, date, link, imageUrl, isDarkMode }: any) => (
       {/* Left column: Date + Thumbnail */}
       <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 flex-shrink-0">
         {/* Date */}
-        <div className={`flex-shrink-0`}>
+        <div className={`flex-shrink-0 w-20 sm:w-28 flex items-center justify-center`}>
           <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
             isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
           }`}>
@@ -1008,6 +1008,9 @@ const WritingItem = ({ title, date, link, imageUrl, isDarkMode }: any) => (
 
       {/* Content */}
       <div className="flex-1 min-w-0 flex flex-col justify-center py-0.5">
+        <div className={`text-xs font-bold leading-tight mb-0.5 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+          {source}
+        </div>
         <h3 className={`text-sm font-bold leading-tight group-hover:text-blue-500 transition-colors line-clamp-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
           {title}
         </h3>
