@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Moon, Sun, Menu, X, Tent, ArrowLeft, ExternalLink, Users, Lightbulb, Target } from 'lucide-react';
+import Header from './components/Header';
+import { ExternalLink, Users, Lightbulb, Target } from 'lucide-react';
 
 export default function Projects() {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -85,24 +84,6 @@ export default function Projects() {
     ]
   };
 
-  const partnerCoaching = {
-    title: 'Product People 提携コーチ',
-    description: 'Product People株式会社の提携コーチとして、プロダクトコーチングを提供しています',
-    items: [
-      {
-        title: 'プロダクトコーチング',
-        link: 'https://productpeople.jp/',
-        linkText: 'Product People'
-      },
-      {
-        title: 'ビギナー向け無料コーチング',
-        description: '不定期で開催',
-        link: 'https://note.com/productpeople/n/nd0aa8d2b9a7f',
-        linkText: '詳細はこちら'
-      }
-    ]
-  };
-
   const corporateCoaching = {
     title: '企業向けサービス',
     description: 'プロダクトリーダーへのアドバイザリー、外部顧問、プロダクトチーム伴走支援など',
@@ -154,72 +135,7 @@ export default function Projects() {
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
-      {/* Header */}
-      <header className={`sticky top-0 z-50 border-b-4 border-black transition-colors duration-300 ${
-        isDarkMode ? 'bg-gray-800' : 'bg-white'
-      }`}>
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center space-x-3 group">
-              <Tent size={32} className={isDarkMode ? 'text-blue-400' : 'text-blue-600'} />
-              <span className={`text-2xl font-black ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
-                Yuta.Kanehara
-              </span>
-            </Link>
-
-            <nav className="hidden md:flex items-center space-x-6">
-              <Link
-                to="/"
-                className={`flex items-center gap-2 font-bold transition-colors ${
-                  isDarkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-700 hover:text-blue-600'
-                }`}
-              >
-                <ArrowLeft size={18} />
-                Back to Home
-              </Link>
-              <button
-                onClick={() => setIsDarkMode(!isDarkMode)}
-                className={`p-2 rounded-lg transition-colors ${
-                  isDarkMode ? 'bg-gray-700 hover:bg-gray-600 text-yellow-400' : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
-                }`}
-              >
-                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-              </button>
-            </nav>
-
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`md:hidden p-2 rounded-lg ${
-                isDarkMode ? 'bg-gray-700 text-gray-100' : 'bg-gray-100 text-gray-900'
-              }`}
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-
-          {isMenuOpen && (
-            <nav className="md:hidden mt-4 pb-4 space-y-2">
-              <Link
-                to="/"
-                className={`block px-4 py-2 rounded-lg font-bold ${
-                  isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Back to Home
-              </Link>
-              <button
-                onClick={() => setIsDarkMode(!isDarkMode)}
-                className={`w-full text-left px-4 py-2 rounded-lg font-bold ${
-                  isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'
-                }`}
-              >
-                {isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
-              </button>
-            </nav>
-          )}
-        </div>
-      </header>
+      <Header isDarkMode={isDarkMode} onToggleTheme={() => setIsDarkMode(!isDarkMode)} currentPage="projects" />
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-12">
@@ -336,46 +252,6 @@ export default function Projects() {
                   <p className={`text-sm mb-3 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                     {item.description}
                   </p>
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-1 text-sm font-bold ${
-                      isDarkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
-                    }`}
-                  >
-                    {item.linkText}
-                    <ExternalLink size={14} />
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Partner Coaching */}
-          <div className="mb-8">
-            <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
-              {partnerCoaching.title}
-            </h3>
-            <p className={`text-sm mb-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-              {partnerCoaching.description}
-            </p>
-            <div className="grid md:grid-cols-2 gap-4">
-              {partnerCoaching.items.map((item, idx) => (
-                <div
-                  key={idx}
-                  className={`p-4 rounded-xl border-2 ${
-                    isDarkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-200'
-                  }`}
-                >
-                  <p className={`font-bold mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
-                    {item.title}
-                  </p>
-                  {item.description && (
-                    <p className={`text-sm mb-3 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                      {item.description}
-                    </p>
-                  )}
                   <a
                     href={item.link}
                     target="_blank"

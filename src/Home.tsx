@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Header from './components/Header';
 import { 
   Briefcase, 
   ExternalLink, 
@@ -9,12 +9,7 @@ import {
   Code, 
   Users, 
   Zap,
-  Moon,
-  Sun,
-  Menu,
-  X,
   MapPin,
-  Loader,
   Mic2,
   MessageSquare,
   FileText,
@@ -23,7 +18,6 @@ import {
   RefreshCw,
   Lightbulb,
   Globe,
-  Tent,
   Facebook
 } from 'lucide-react';
 
@@ -123,29 +117,18 @@ interface PortfolioData {
 
 const Portfolio = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [data, setData] = useState<PortfolioData | null>(null);
-  const [loading, setLoading] = useState(true);
 
   // System preference detection
   useEffect(() => {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       setIsDarkMode(true);
     }
-    // 初期データのロード
-    fetchNotionData();
   }, []);
 
   const toggleTheme = () => setIsDarkMode(!isDarkMode);
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  // --- Data Fetching Logic (Initial Mock) ---
-  const fetchNotionData = async () => {
-    setLoading(true);
-    try {
-      await new Promise(resolve => setTimeout(resolve, 800));
-
-      const mockData: PortfolioData = {
+  // --- Static Data ---
+  const data: PortfolioData = {
         profile: {
           name: "Yuta Kanehara",
           role: "Product Manager",
@@ -268,15 +251,6 @@ const Portfolio = () => {
         speakings: staticSpeakings as Speaking[],
         interviews: staticInterviews as Interview[]
       };
-      
-      setData(mockData);
-    } catch (error) {
-      console.error("Failed to fetch data:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
 
   const getPhilosophyIcon = (type: string) => {
     switch (type) {
@@ -289,14 +263,6 @@ const Portfolio = () => {
       default: return <Users className="text-blue-500" />;
     }
   };
-
-  if (loading || !data) {
-    return (
-      <div className={`min-h-screen flex items-center justify-center transition-colors duration-300 ${isDarkMode ? 'bg-[#202020]' : 'bg-[#F0F0F0]'} bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:20px_20px] dark:bg-[size:40px_40px]`}>
-        <Loader className={`animate-spin ${isDarkMode ? 'text-cyan-400' : 'text-blue-600'}`} size={32} />
-      </div>
-    );
-  }
 
 
   const mutureExp = data.experiences.find(e => e.id === 'muture');
@@ -312,91 +278,7 @@ const Portfolio = () => {
           : 'bg-[radial-gradient(#d4d4d8_2px,transparent_2px)] bg-[size:24px_24px] opacity-60'
       }`}></div>
 
-      <nav className={`fixed w-full z-50 border-b-4 transition-all duration-300 ${
-        isDarkMode 
-          ? 'bg-[#2a2a2a]/95 border-gray-700 shadow-[0_4px_0_0_rgba(0,0,0,0.5)]' 
-          : 'bg-white/95 border-black shadow-[0_4px_0_0_rgba(0,0,0,0.1)]'
-      }`}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center h-16 relative">
-            <div className="flex-shrink-0 font-extrabold text-2xl tracking-tighter flex items-center gap-2">
-              <span className={`w-8 h-8 flex items-center justify-center rounded-lg border-2 ${isDarkMode ? 'bg-blue-600 border-blue-400' : 'bg-blue-500 border-black text-white'}`}>
-                <Tent size={18} />
-              </span>
-              <span>
-                Yuta<span className="text-red-500">.</span>Kanehara
-              </span>
-            </div>
-            
-            <div className="hidden md:flex items-center space-x-4 absolute left-1/2 -translate-x-1/2">
-              <Link
-                to="/projects"
-                className={`px-3 py-2 rounded-lg text-sm font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 ${
-                  isDarkMode 
-                    ? 'text-gray-300 hover:text-white hover:bg-gray-700' 
-                    : 'text-gray-600 hover:text-black hover:bg-gray-100 hover:shadow-[2px_2px_0_0_rgba(0,0,0,0.1)]'
-                }`}
-              >
-                Projects
-              </Link>
-            </div>
-
-            <div className="hidden md:flex items-center ml-auto">
-              <button
-                onClick={toggleTheme}
-                className={`p-2 rounded-lg border-2 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none ${
-                  isDarkMode 
-                    ? 'bg-gray-800 border-gray-600 text-yellow-400 shadow-[2px_2px_0_0_#4b5563]' 
-                    : 'bg-yellow-400 border-black text-black shadow-[2px_2px_0_0_#000]'
-                }`}
-              >
-                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-              </button>
-            </div>
-
-            <div className="md:hidden flex items-center gap-3">
-              <button
-                onClick={toggleTheme}
-                className={`p-2 rounded-lg border-2 transition-all duration-200 active:translate-y-0.5 active:shadow-none ${
-                  isDarkMode 
-                    ? 'bg-gray-800 border-gray-600 text-yellow-400 shadow-[2px_2px_0_0_#4b5563]' 
-                    : 'bg-yellow-400 border-black text-black shadow-[2px_2px_0_0_#000]'
-                }`}
-              >
-                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-              </button>
-              <button
-                onClick={toggleMenu}
-                className={`p-2 rounded-lg border-2 transition-all duration-200 active:translate-y-0.5 active:shadow-none ${
-                  isDarkMode 
-                    ? 'bg-gray-800 border-gray-600 text-gray-200 shadow-[2px_2px_0_0_#4b5563]' 
-                    : 'bg-white border-black text-black shadow-[2px_2px_0_0_#000]'
-                }`}
-              >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {isMenuOpen && (
-          <div className="md:hidden">
-            <div className={`px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t-2 ${isDarkMode ? 'bg-[#2a2a2a] border-gray-700' : 'bg-white border-black'}`}>
-              <Link
-                to="/projects"
-                className={`block px-3 py-2 rounded-lg text-base font-bold ${
-                  isDarkMode 
-                    ? 'text-gray-300 hover:bg-gray-700' 
-                    : 'text-gray-700 hover:bg-gray-100'
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Projects
-              </Link>
-            </div>
-          </div>
-        )}
-      </nav>
+      <Header isDarkMode={isDarkMode} onToggleTheme={toggleTheme} currentPage="home" />
 
       <main className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-12">
         {/* Hero Section */}
