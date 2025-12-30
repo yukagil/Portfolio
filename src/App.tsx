@@ -195,7 +195,7 @@ const Portfolio = () => {
                 description: "丸井グループの新規事業創出、共創のエコシステムづくりをリード。"
               }
             ],
-            description: "新規事業開発およびプロダクトマネジメント業務に従事。Mutureと並行して活動。",
+            description: "",
             isCurrent: true,
             branchType: 'feature'
           },
@@ -732,7 +732,7 @@ const ExperienceItem = ({ experience, isDarkMode }: any) => {
           ? 'bg-gray-800 border-gray-600 group-hover:border-gray-400' 
           : 'bg-white border-black shadow-[4px_4px_0_0_#000] group-hover:shadow-[6px_6px_0_0_#000]'
       }`}>
-        <div className="mb-3 flex flex-wrap items-baseline gap-2">
+        <div className="mb-3 flex flex-wrap items-center gap-2">
           {website ? (
             <a 
               href={website} 
