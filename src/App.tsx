@@ -822,12 +822,12 @@ const SpeakingItem = ({ speak, isDarkMode }: { speak: Speaking, isDarkMode: bool
 
       {/* Thumbnail */}
       {speak.imageUrl ? (
-        <div className={`hidden sm:block flex-shrink-0 w-28 aspect-[1.91/1] rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
+        <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
           <img src={speak.imageUrl} alt={speak.title} className="w-full h-full object-cover" />
         </div>
       ) : (
         <div
-          className={`hidden sm:flex flex-shrink-0 w-28 aspect-[1.91/1] rounded overflow-hidden relative items-center justify-center ${
+          className={`flex flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden relative items-center justify-center ${
             isDarkMode
               ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
               : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
@@ -841,7 +841,7 @@ const SpeakingItem = ({ speak, isDarkMode }: { speak: Speaking, isDarkMode: bool
                 : 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
             }`}
           />
-          <Mic2 size={18} className={isDarkMode ? 'text-gray-300' : 'text-gray-700'} />
+          <Mic2 size={14} className={isDarkMode ? 'text-gray-300' : 'text-gray-700'} />
         </div>
       )}
       
@@ -913,12 +913,12 @@ const InterviewItem = ({ interview, isDarkMode }: { interview: Interview, isDark
 
       {/* Thumbnail */}
       {interview.imageUrl ? (
-        <div className={`hidden sm:block flex-shrink-0 w-28 aspect-[1.91/1] rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
+        <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
           <img src={interview.imageUrl} alt={interview.title} className="w-full h-full object-cover" />
         </div>
       ) : (
         <div
-          className={`hidden sm:flex flex-shrink-0 w-28 aspect-[1.91/1] rounded overflow-hidden relative items-center justify-center ${
+          className={`flex flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden relative items-center justify-center ${
             isDarkMode
               ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
               : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
@@ -932,7 +932,7 @@ const InterviewItem = ({ interview, isDarkMode }: { interview: Interview, isDark
                 : 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
             }`}
           />
-          <MessageSquare size={18} className={isDarkMode ? 'text-gray-300' : 'text-gray-700'} />
+          <MessageSquare size={14} className={isDarkMode ? 'text-gray-300' : 'text-gray-700'} />
         </div>
       )}
 
@@ -974,12 +974,12 @@ const WritingItem = ({ title, date, link, imageUrl, isDarkMode }: any) => (
 
       {/* Thumbnail */}
       {imageUrl ? (
-        <div className={`hidden sm:block flex-shrink-0 w-28 aspect-[1.91/1] rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
+        <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
           <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
         </div>
       ) : (
         <div
-          className={`hidden sm:flex flex-shrink-0 w-28 aspect-[1.91/1] rounded overflow-hidden relative items-center justify-center ${
+          className={`flex flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden relative items-center justify-center ${
             isDarkMode
               ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
               : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
@@ -993,7 +993,7 @@ const WritingItem = ({ title, date, link, imageUrl, isDarkMode }: any) => (
                 : 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
             }`}
           />
-          <BookOpen size={18} className={isDarkMode ? 'text-gray-300' : 'text-gray-700'} />
+          <BookOpen size={14} className={isDarkMode ? 'text-gray-300' : 'text-gray-700'} />
         </div>
       )}
 
