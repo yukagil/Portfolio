@@ -748,8 +748,10 @@ const ExperienceItem = ({ experience, isDarkMode }: any) => {
               {company}
             </h3>
           )}
-          <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
-            isDarkMode ? 'bg-gray-700 border-gray-500 text-gray-300' : 'bg-gray-100 border-gray-300 text-gray-600'
+          <span className={`text-xs font-bold font-mono px-2 py-1 rounded border-2 ${
+            isDarkMode 
+              ? 'bg-gray-700 border-gray-500 text-gray-300 shadow-[2px_2px_0_0_rgba(107,114,128,0.5)]' 
+              : 'bg-gray-100 border-gray-900 text-gray-700 shadow-[2px_2px_0_0_#000]'
           }`}>
             {totalPeriod}
           </span>
