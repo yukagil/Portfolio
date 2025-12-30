@@ -454,9 +454,9 @@ const Portfolio = () => {
                   <span className="mx-3 text-gray-400">|</span>
                   <span role="img" aria-label="camping">🏕️ {data.profile.hobbies}</span>
                 </div>
-                <div className="flex items-center text-xs font-bold font-mono opacity-70">
-                  <RefreshCw size={14} className={`mr-2 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`} />
-                  <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>Last updated: {LAST_UPDATED}</span>
+                <div className="flex items-center text-sm font-bold font-mono">
+                  <RefreshCw size={18} className={`mr-2 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`} />
+                  <span className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Last updated: {LAST_UPDATED}</span>
                 </div>
               </div>
             </div>
