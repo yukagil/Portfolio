@@ -23,7 +23,8 @@ import {
   Building2,
   Lightbulb,
   Globe,
-  Tent
+  Tent,
+  Facebook
 } from 'lucide-react';
 
 // ビルド時に生成された静的データをインポート
@@ -93,9 +94,8 @@ interface PortfolioData {
   };
   socials: {
     twitter: string;
-    note: string;
     linkedin: string;
-    bento: string;
+    facebook: string;
   };
   experiences: CompanyExperience[];
   philosophies: Array<{
@@ -154,6 +154,7 @@ const Portfolio = () => {
         socials: {
           twitter: "https://twitter.com/yukagil",
           linkedin: "https://www.linkedin.com/in/yuta-kanehara/",
+          facebook: "https://www.facebook.com/yuta.kanehara"
         },
         experiences: [
           {
@@ -439,6 +440,7 @@ const Portfolio = () => {
               <div className="flex flex-wrap gap-4 mb-8">
                 {data.socials.twitter && <SocialLink href={data.socials.twitter} icon={<Twitter size={20} />} label="Twitter" isDarkMode={isDarkMode} color="bg-blue-400" />}
                 {data.socials.linkedin && <SocialLink href={data.socials.linkedin} icon={<Linkedin size={20} />} label="LinkedIn" isDarkMode={isDarkMode} color="bg-blue-600" />}
+                {data.socials.facebook && <SocialLink href={data.socials.facebook} icon={<Facebook size={20} />} label="Facebook" isDarkMode={isDarkMode} color="bg-blue-500" />}
               </div>
 
               <div className="flex items-center text-sm font-bold font-mono">
@@ -609,22 +611,6 @@ const Portfolio = () => {
                   isDarkMode={isDarkMode}
                 />
               ))}
-            </div>
-            
-            <div className="mt-10 flex justify-center">
-              <a 
-                href={data.socials.note}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex items-center justify-center px-10 py-4 rounded-xl font-black text-lg border-2 transition-all duration-200 hover:-translate-y-1 active:translate-y-0 active:shadow-none ${
-                  isDarkMode 
-                    ? 'bg-green-500 border-green-300 text-black shadow-[4px_4px_0_0_#86efac] hover:bg-green-400' 
-                    : 'bg-green-400 border-black text-black shadow-[4px_4px_0_0_#000] hover:bg-green-300'
-                }`}
-              >
-                <span className="mr-3">View all articles on Note</span>
-                <ExternalLink size={20} strokeWidth={3} />
-              </a>
             </div>
           </div>
         </section>
