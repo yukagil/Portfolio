@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
-import { ExternalLink, Users, Lightbulb, Target } from 'lucide-react';
+import SectionTitle from './components/SectionTitle';
+import { ExternalLink, Users, Lightbulb, Target, Briefcase, Code } from 'lucide-react';
 
 export default function Projects() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -112,27 +113,6 @@ export default function Projects() {
     }
   ];
 
-  const getColorClasses = (color: string, isDark: boolean) => {
-    const colors = {
-      green: {
-        border: 'border-green-500',
-        bg: isDark ? 'bg-green-500/10' : 'bg-green-50',
-        text: isDark ? 'text-green-400' : 'text-green-600'
-      },
-      purple: {
-        border: 'border-purple-500',
-        bg: isDark ? 'bg-purple-500/10' : 'bg-purple-50',
-        text: isDark ? 'text-purple-400' : 'text-purple-600'
-      },
-      red: {
-        border: 'border-red-500',
-        bg: isDark ? 'bg-red-500/10' : 'bg-red-50',
-        text: isDark ? 'text-red-400' : 'text-red-600'
-      }
-    };
-    return colors[color as keyof typeof colors];
-  };
-
   return (
     <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-[#202020] text-gray-200' : 'bg-[#F0F0F0] text-gray-800'} font-sans relative`}>
       {/* Background Pattern */}
@@ -151,42 +131,41 @@ export default function Projects() {
           <h1 className={`text-4xl font-black mb-4 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
             Projects
           </h1>
-          <p className={`text-lg ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            プロダクトコーチングと個人開発プロジェクト
-          </p>
         </div>
 
         {/* Product Coaching Section */}
         <section className="mb-16">
-          <h2 className={`text-3xl font-black mb-8 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
-            プロダクトコーチング
-          </h2>
+          <div className="mb-8">
+            <SectionTitle title="プロダクトコーチング" icon={<Briefcase size={24} />} isDarkMode={isDarkMode} />
+          </div>
           
           {/* Coaching Types */}
           <div className="mb-12">
-            <h3 className={`text-xl font-bold mb-6 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
-              コーチングの種類と対象
-            </h3>
             <div className="grid md:grid-cols-3 gap-6">
               {coachingTypes.map((coaching, idx) => {
-                const colors = getColorClasses(coaching.color, isDarkMode);
+                const headerColors = ['bg-green-500', 'bg-purple-500', 'bg-red-500'];
+                const darkHeaderColors = ['bg-green-900', 'bg-purple-900', 'bg-red-900'];
+                const headerColor = isDarkMode ? darkHeaderColors[idx % 3] : headerColors[idx % 3];
+                const headerText = 'text-white';
+                
                 return (
                   <div
                     key={idx}
-                    className={`p-6 rounded-2xl border-2 transition-all duration-300 hover:-translate-y-1 ${colors.border} ${colors.bg} ${
-                      isDarkMode ? 'hover:border-gray-400' : 'shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000]'
+                    className={`flex flex-col rounded-2xl border-2 overflow-hidden transition-all duration-300 hover:-translate-y-1 ${
+                      isDarkMode 
+                        ? 'bg-gray-800 border-gray-600 hover:border-gray-400' 
+                        : 'bg-white border-black shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000]'
                     }`}
                   >
-                    <div className={`mb-4 ${colors.text}`}>
-                      {coaching.icon}
+                    <div className={`p-4 border-b-2 ${isDarkMode ? 'border-gray-600' : 'border-black'} ${headerColor} ${headerText} flex items-center gap-3`}>
+                      <div className="p-1.5 rounded bg-white/20 backdrop-blur-sm">{coaching.icon}</div>
+                      <div>
+                        <h4 className="text-base font-black tracking-tight">{coaching.title}</h4>
+                        <p className="text-xs font-bold opacity-90">{coaching.subtitle}</p>
+                      </div>
                     </div>
-                    <h4 className={`text-lg font-bold mb-1 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
-                      {coaching.title}
-                    </h4>
-                    <p className={`text-sm font-bold mb-4 ${colors.text}`}>
-                      {coaching.subtitle}
-                    </p>
-                    <ul className={`space-y-2 text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    <div className="p-6 flex-1">
+                    <ul className={`space-y-2 text-sm font-medium leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       {coaching.description.map((item, i) => (
                         <li key={i} className="flex items-start">
                           <span className="mr-2">•</span>
@@ -195,7 +174,7 @@ export default function Projects() {
                       ))}
                     </ul>
                     {(coaching.target.company.length > 0 || coaching.target.product.length > 0) && (
-                      <div className="mt-4 pt-4 border-t border-gray-300 dark:border-gray-600">
+                      <div className={`mt-4 pt-4 border-t-2 ${isDarkMode ? 'border-gray-600' : 'border-gray-200'}`}>
                         {coaching.target.company.length > 0 && (
                           <div className="mb-2">
                             <p className={`text-xs font-bold mb-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
@@ -236,6 +215,7 @@ export default function Projects() {
                         )}
                       </div>
                     )}
+                    </div>
                   </div>
                 );
               })}
@@ -318,9 +298,9 @@ export default function Projects() {
 
         {/* Personal Products Section */}
         <section>
-          <h2 className={`text-3xl font-black mb-8 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
-            個人プロダクト開発
-          </h2>
+          <div className="mb-8">
+            <SectionTitle title="個人プロダクト開発" icon={<Code size={24} />} isDarkMode={isDarkMode} />
+          </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {personalProducts.map((product, idx) => (
               <div

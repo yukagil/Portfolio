@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
+import SectionTitle from './components/SectionTitle';
 import { 
   Briefcase, 
   ExternalLink, 
@@ -573,17 +574,6 @@ const Portfolio = () => {
 };
 
 // --- Sub-components (Updated with Pop Design) ---
-
-const SectionTitle = ({ title, icon, isDarkMode }: { title: string, icon?: React.ReactNode, isDarkMode: boolean }) => (
-  <h2 className={`text-3xl font-black mb-0 flex items-center gap-3 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
-    <span className={`p-2 rounded-lg border-2 ${
-      isDarkMode ? 'bg-gray-800 border-gray-600 text-blue-400' : 'bg-yellow-400 border-black text-black'
-    }`}>
-      {icon}
-    </span>
-    {title}
-  </h2>
-);
 
 const SocialLink = ({ href, icon, label, isDarkMode, color }: any) => (
   <a
