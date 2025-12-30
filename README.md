@@ -1,73 +1,104 @@
-# React + TypeScript + Vite
+# Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Yuta Kanehara のポートフォリオサイト
 
-Currently, two official plugins are available:
+🔗 **Live Site**: https://yukagil.github.io/Portfolio/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 技術スタック
 
-## React Compiler
+- **Framework**: React 19 + TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS v4
+- **Icons**: Lucide React
+- **Hosting**: GitHub Pages
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 特徴
 
-## Expanding the ESLint configuration
+### 📊 静的データ生成
+ビルド時に外部APIからデータを取得し、静的JSONとして埋め込む設計：
+- **note.com RSS** → 記事一覧 (writings)
+- **microCMS API** → 登壇実績 (speakings) / インタビュー (interviews)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+これにより：
+- ✅ APIキーが本番環境に露出しない
+- ✅ CORS問題なし
+- ✅ 高速な初期表示
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 🔒 SEO対策
+検索エンジンにインデックスされない設定：
+- `robots.txt` でクローラーをブロック
+- `<meta name="robots" content="noindex, nofollow">` を設定
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## セットアップ
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. 依存関係のインストール
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2. 環境変数の設定
+`.env` ファイルを作成し、microCMS APIキーを設定：
+```env
+MICROCMS_API_KEY=your_api_key_here
 ```
+
+### 3. 開発サーバーの起動
+```bash
+npm run dev
+```
+
+## ビルド & デプロイ
+
+### ローカルビルド
+```bash
+npm run build
+```
+
+### データ取得のみ実行
+```bash
+npm run fetch-data
+```
+
+### GitHub Pagesへデプロイ
+```bash
+npm run deploy
+```
+
+## プロジェクト構成
+
+```
+my-portfolio/
+├── src/
+│   ├── App.tsx           # メインコンポーネント
+│   ├── main.tsx          # エントリーポイント
+│   ├── index.css         # グローバルスタイル
+│   └── data/             # ビルド時生成される静的データ
+│       ├── writings.json
+│       ├── speakings.json
+│       └── interviews.json
+├── scripts/
+│   └── fetch-data.js     # ビルド時データ取得スクリプト
+├── public/
+│   └── robots.txt        # クローラーブロック設定
+└── .env                  # 環境変数（Git管理外）
+```
+
+## 開発メモ
+
+### SSL証明書エラーの回避
+ローカル環境でのビルド時にSSL証明書エラーが発生する場合、`fetch-data.js` で以下を設定：
+```js
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+```
+※本番CI/CDでは通常この設定は不要
+
+### データ更新
+記事や登壇実績を更新するには、再ビルド＆デプロイを実行：
+```bash
+npm run deploy
+```
+
+## ライセンス
+
+© 2025 Yuta Kanehara. All rights reserved.
+
