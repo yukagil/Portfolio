@@ -134,11 +134,18 @@ export default function Projects() {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
+    <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-[#202020] text-gray-200' : 'bg-[#F0F0F0] text-gray-800'} font-sans relative`}>
+      {/* Background Pattern */}
+      <div className={`absolute inset-0 pointer-events-none z-0 ${
+        isDarkMode 
+          ? 'bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:40px_40px] opacity-30' 
+          : 'bg-[radial-gradient(#d4d4d8_2px,transparent_2px)] bg-[size:24px_24px] opacity-60'
+      }`}></div>
+
       <Header isDarkMode={isDarkMode} onToggleTheme={() => setIsDarkMode(!isDarkMode)} currentPage="projects" />
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-12">
+      <main className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-12">
         {/* Page Title */}
         <div className="mb-12">
           <h1 className={`text-4xl font-black mb-4 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
@@ -166,7 +173,9 @@ export default function Projects() {
                 return (
                   <div
                     key={idx}
-                    className={`p-6 rounded-2xl border-2 ${colors.border} ${colors.bg}`}
+                    className={`p-6 rounded-2xl border-2 transition-all duration-300 hover:-translate-y-1 ${colors.border} ${colors.bg} ${
+                      isDarkMode ? 'hover:border-gray-400' : 'shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000]'
+                    }`}
                   >
                     <div className={`mb-4 ${colors.text}`}>
                       {coaching.icon}
@@ -196,8 +205,8 @@ export default function Projects() {
                               {coaching.target.company.map((item, i) => (
                                 <span
                                   key={i}
-                                  className={`text-xs px-2 py-1 rounded ${
-                                    isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-white text-gray-700'
+                                  className={`text-xs px-2 py-1 rounded border ${
+                                    isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-300' : 'bg-white border-black text-gray-700'
                                   }`}
                                 >
                                   {item}
@@ -215,8 +224,8 @@ export default function Projects() {
                               {coaching.target.product.map((item, i) => (
                                 <span
                                   key={i}
-                                  className={`text-xs px-2 py-1 rounded ${
-                                    isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-white text-gray-700'
+                                  className={`text-xs px-2 py-1 rounded border ${
+                                    isDarkMode ? 'bg-gray-700 border-gray-600 text-gray-300' : 'bg-white border-black text-gray-700'
                                   }`}
                                 >
                                   {item}
@@ -242,8 +251,8 @@ export default function Projects() {
               {individualCoaching.items.map((item, idx) => (
                 <div
                   key={idx}
-                  className={`p-4 rounded-xl border-2 ${
-                    isDarkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-200'
+                  className={`p-4 rounded-xl border-2 transition-all duration-300 hover:-translate-y-1 ${
+                    isDarkMode ? 'bg-gray-800 border-gray-600 hover:border-gray-400' : 'bg-white border-black shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000]'
                   }`}
                 >
                   <p className={`font-bold mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
@@ -280,8 +289,8 @@ export default function Projects() {
               {corporateCoaching.items.map((item, idx) => (
                 <div
                   key={idx}
-                  className={`p-4 rounded-xl border-2 ${
-                    isDarkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-200'
+                  className={`p-4 rounded-xl border-2 transition-all duration-300 hover:-translate-y-1 ${
+                    isDarkMode ? 'bg-gray-800 border-gray-600 hover:border-gray-400' : 'bg-white border-black shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000]'
                   }`}
                 >
                   <p className={`font-bold mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
@@ -316,8 +325,8 @@ export default function Projects() {
             {personalProducts.map((product, idx) => (
               <div
                 key={idx}
-                className={`p-6 rounded-2xl border-2 border-dashed ${
-                  isDarkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'
+                className={`p-6 rounded-2xl border-2 border-dashed transition-all duration-300 hover:-translate-y-1 ${
+                  isDarkMode ? 'bg-gray-800 border-gray-600 hover:border-gray-400' : 'bg-white border-black shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000]'
                 }`}
               >
                 <div className="flex items-center justify-between mb-4">
