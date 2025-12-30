@@ -738,13 +738,21 @@ const ExperienceItem = ({ experience, isDarkMode }: any) => {
               href={website} 
               target="_blank" 
               rel="noopener noreferrer"
-              className={`text-2xl font-black transition-colors hover:text-blue-500 flex items-center gap-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}
+              className={`text-2xl font-black transition-colors hover:text-blue-500 flex items-center gap-2 bg-gradient-to-t bg-no-repeat bg-bottom ${
+                isDarkMode 
+                  ? 'text-gray-100 from-blue-500/30 to-blue-500/30 bg-[length:100%_40%]' 
+                  : 'text-gray-900 from-yellow-300/70 to-yellow-300/70 bg-[length:100%_40%]'
+              }`}
             >
               {company}
               <ExternalLink size={20} className="opacity-60" />
             </a>
           ) : (
-            <h3 className={`text-2xl font-black ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+            <h3 className={`text-2xl font-black bg-gradient-to-t bg-no-repeat bg-bottom ${
+              isDarkMode 
+                ? 'text-gray-100 from-blue-500/30 to-blue-500/30 bg-[length:100%_40%]' 
+                : 'text-gray-900 from-yellow-300/70 to-yellow-300/70 bg-[length:100%_40%]'
+            }`}>
               {company}
             </h3>
           )}
