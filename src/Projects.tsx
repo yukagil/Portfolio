@@ -68,36 +68,42 @@ export default function Projects() {
   ];
 
   const individualCoaching = {
-    title: '個人向けコーチング',
-    items: [
+    title: '個人向けプロダクトコーチング',
+    description: 'キャリア相談、プロダクトマネジメントの実務相談など',
+    singleSession: [
       {
-        type: '単発相談',
-        description: 'プロダクトマネジメントのキャリアや実務の相談',
+        type: 'Granty PM',
+        description: 'プロダクトマネジメントのキャリアや実務について、1時間のオンラインMTGで相談',
         link: 'https://pm-notes.com/pm_37/',
-        linkText: 'Granty PM'
+        linkText: 'Granty PMで予約'
       },
       {
-        type: '継続的な相談',
-        description: 'X（Twitter）でのDMやメンションでご連絡ください',
-        link: 'https://twitter.com/yukagil',
-        linkText: '@yukagil'
+        type: 'マシュマロ',
+        description: '匿名で気軽に質問・相談ができます',
+        link: 'https://marshmallow-qa.com/uos17sgwv5gcfe4?t=TsB6aG&utm_medium=url_text&utm_source=promotion',
+        linkText: 'マシュマロで質問'
       }
-    ]
+    ],
+    continuous: {
+      description: '継続的な相談をご希望の方は、SNS（X / Twitter）でDMやメンションにてお気軽にご連絡ください',
+      link: 'https://twitter.com/yukagil',
+      linkText: '@yukagil'
+    }
   };
 
   const corporateCoaching = {
-    title: '企業向けサービス',
-    description: 'プロダクトリーダーへのアドバイザリー、外部顧問、プロダクトチーム伴走支援など',
+    title: '企業向けプロダクトコーチング',
+    description: '上記3つのコーチングを、Muture または Product People 経由でご依頼いただけます',
     items: [
       {
         title: 'Muture',
-        description: '企業向けプロダクトコーチング・アドバイザリー',
+        description: 'プロダクトリーダーへのアドバイザリー、外部顧問、プロダクトチーム伴走支援など',
         link: 'https://muture.jp/',
         linkText: 'muture.jp'
       },
       {
-        title: 'Product People経由',
-        description: 'アドバイザリー・外部顧問など',
+        title: 'Product People',
+        description: 'アドバイザリー・外部顧問など、Product Peopleの提携コーチとして対応',
         link: 'https://productpeople.jp/',
         linkText: 'productpeople.jp'
       }
@@ -107,7 +113,7 @@ export default function Projects() {
   const personalProducts = [
     {
       title: 'Coming Soon...',
-      description: '個人プロダクト開発を進行中です',
+      description: 'AIを使ったなにかしらを実験中...',
       status: '開発中',
       isPlaceholder: true
     }
@@ -222,23 +228,26 @@ export default function Projects() {
             </div>
           </div>
 
-          {/* Individual Coaching */}
-          <div className="mb-8">
-            <h3 className={`text-xl font-bold mb-4 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
-              {individualCoaching.title}
+          {/* Corporate Coaching */}
+          <div className="mb-12">
+            <h3 className={`text-2xl font-black mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+              {corporateCoaching.title}
             </h3>
+            <p className={`text-sm mb-6 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              {corporateCoaching.description}
+            </p>
             <div className="grid md:grid-cols-2 gap-4">
-              {individualCoaching.items.map((item, idx) => (
+              {corporateCoaching.items.map((item, idx) => (
                 <div
                   key={idx}
-                  className={`p-4 rounded-xl border-2 transition-all duration-300 hover:-translate-y-1 ${
+                  className={`p-6 rounded-xl border-2 transition-all duration-300 hover:-translate-y-1 ${
                     isDarkMode ? 'bg-gray-800 border-gray-600 hover:border-gray-400' : 'bg-white border-black shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000]'
                   }`}
                 >
-                  <p className={`font-bold mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
-                    {item.type}
+                  <p className={`text-lg font-black mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+                    {item.title}
                   </p>
-                  <p className={`text-sm mb-3 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  <p className={`text-sm mb-4 font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                     {item.description}
                   </p>
                   <a
@@ -257,41 +266,111 @@ export default function Projects() {
             </div>
           </div>
 
-          {/* Corporate Coaching */}
+          {/* Individual Coaching */}
           <div>
-            <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
-              {corporateCoaching.title}
+            <h3 className={`text-2xl font-black mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+              {individualCoaching.title}
             </h3>
-            <p className={`text-sm mb-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-              {corporateCoaching.description}
+            <p className={`text-sm mb-6 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              {individualCoaching.description}
             </p>
-            <div className="grid md:grid-cols-2 gap-4">
-              {corporateCoaching.items.map((item, idx) => (
-                <div
-                  key={idx}
-                  className={`p-4 rounded-xl border-2 transition-all duration-300 hover:-translate-y-1 ${
-                    isDarkMode ? 'bg-gray-800 border-gray-600 hover:border-gray-400' : 'bg-white border-black shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000]'
-                  }`}
-                >
-                  <p className={`font-bold mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
-                    {item.title}
-                  </p>
-                  <p className={`text-sm mb-3 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                    {item.description}
-                  </p>
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-1 text-sm font-bold ${
-                      isDarkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
+            
+            {/* Single Session */}
+            <div className="mb-6">
+              <h4 className={`text-lg font-bold mb-4 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                単発相談
+              </h4>
+              <div className="grid md:grid-cols-2 gap-4">
+                {individualCoaching.singleSession.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className={`p-4 rounded-xl border-2 transition-all duration-300 hover:-translate-y-1 ${
+                      isDarkMode ? 'bg-gray-800 border-gray-600 hover:border-gray-400' : 'bg-white border-black shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000]'
                     }`}
                   >
-                    {item.linkText}
-                    <ExternalLink size={14} />
-                  </a>
-                </div>
-              ))}
+                    <p className={`font-bold mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+                      {item.type}
+                    </p>
+                    <p className={`text-sm mb-3 font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                      {item.description}
+                    </p>
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`inline-flex items-center gap-1 text-sm font-bold ${
+                        isDarkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
+                      }`}
+                    >
+                      {item.linkText}
+                      <ExternalLink size={14} />
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Continuous */}
+            <div>
+              <h4 className={`text-lg font-bold mb-4 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                継続的な相談
+              </h4>
+              <div className={`p-6 rounded-xl border-2 transition-all duration-300 hover:-translate-y-1 ${
+                isDarkMode ? 'bg-gray-800 border-gray-600 hover:border-gray-400' : 'bg-white border-black shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000]'
+              }`}>
+                <p className={`text-sm mb-4 font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  {individualCoaching.continuous.description}
+                </p>
+                <a
+                  href={individualCoaching.continuous.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-flex items-center gap-1 text-sm font-bold ${
+                    isDarkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
+                  }`}
+                >
+                  {individualCoaching.continuous.linkText}
+                  <ExternalLink size={14} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Partner Coaching - ProductPeople */}
+        <section className="mb-16">
+          <div className={`p-6 rounded-2xl border-2 ${
+            isDarkMode ? 'bg-gray-800/50 border-gray-600' : 'bg-blue-50 border-blue-600'
+          }`}>
+            <h3 className={`text-xl font-black mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+              Product People 提携コーチ
+            </h3>
+            <p className={`text-sm mb-4 font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-700'}`}>
+              Product People株式会社の提携コーチとして、プロダクトコーチングを提供しています
+            </p>
+            <div className="flex flex-col gap-2">
+              <a
+                href="https://productpeople.jp/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-1 text-sm font-bold ${
+                  isDarkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
+                }`}
+              >
+                Product People 公式サイト
+                <ExternalLink size={14} />
+              </a>
+              <a
+                href="https://note.com/productpeople/n/nd0aa8d2b9a7f"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-1 text-sm font-bold ${
+                  isDarkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
+                }`}
+              >
+                ビギナー向け無料コーチング（不定期開催）
+                <ExternalLink size={14} />
+              </a>
             </div>
           </div>
         </section>
@@ -299,7 +378,7 @@ export default function Projects() {
         {/* Personal Products Section */}
         <section>
           <div className="mb-8">
-            <SectionTitle title="個人プロダクト開発" icon={<Code size={24} />} isDarkMode={isDarkMode} />
+            <SectionTitle title="個人プロダクト" icon={<Code size={24} />} isDarkMode={isDarkMode} />
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {personalProducts.map((product, idx) => (
