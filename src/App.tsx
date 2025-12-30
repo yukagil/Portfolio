@@ -169,7 +169,7 @@ const Portfolio = () => {
             totalPeriod: "2023.02 - Current",
             roles: [
               {
-                title: "執行役員CPO",
+                title: "執行役員／Chief Product Officer",
                 period: "2024.06 - Current",
                 description: "プロダクト戦略の統括および組織づくりをリード。"
               },
@@ -207,11 +207,11 @@ const Portfolio = () => {
             company: "Showcase Gig",
             companyDescription: "モバイルオーダープラットフォーム「O:der」を提供するベンチャー企業。デジタル化による次世代店舗体験を創出。",
             website: "https://www.showcase-gig.com/",
-            totalPeriod: "2020.02 - 2023.03",
+            totalPeriod: "2020.02 - 2023.02",
             roles: [
               {
                 title: "VP of Product",
-                period: "2022.03 - 2023.03",
+                period: "2022.03 - 2023.02",
                 description: "中期経営計画として5ヵ年ロードマップを策定。SMB中心からエンタープライズ戦略への転換を推進する中、SaaS市場の冬の時代が到来。領域を絞り計画を前倒しするための戦略再構築を行う。"
               },
               {
@@ -816,7 +816,7 @@ const PhilosophyCard = ({ icon, title, content, isDarkMode, index }: any) => {
   const headerText = isDarkMode ? 'text-white' : (index % 4 === 2 ? 'text-black' : 'text-white'); // Yellow背景のみ黒文字
 
   return (
-    <div className={`rounded-2xl border-2 overflow-hidden transition-all duration-300 hover:-translate-y-1 ${
+    <div className={`h-full flex flex-col rounded-2xl border-2 overflow-hidden transition-all duration-300 hover:-translate-y-1 ${
       isDarkMode 
         ? 'bg-gray-800 border-gray-600 hover:border-gray-400' 
         : 'bg-white border-black shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000]'
@@ -825,7 +825,7 @@ const PhilosophyCard = ({ icon, title, content, isDarkMode, index }: any) => {
         <div className={`p-1.5 rounded bg-white/20 backdrop-blur-sm`}>{icon}</div>
         <h3 className="text-lg font-black tracking-tight">{title}</h3>
       </div>
-      <div className="p-6">
+      <div className="p-6 flex-1">
         <p className={`text-sm font-medium leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{content}</p>
       </div>
     </div>
