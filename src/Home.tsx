@@ -282,7 +282,7 @@ const Portfolio = () => {
 
       <main className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-12">
         {/* Hero Section */}
-        <section id="about" className="mb-16 animate-fade-in-up">
+        <section id="about" className="mb-16">
           <div className="flex flex-col-reverse md:flex-row items-start md:items-center justify-between gap-12">
             <div className="flex-1">
               <div className={`inline-block px-3 py-1 mb-4 text-xs font-bold tracking-widest rounded-full border-2 ${
@@ -359,7 +359,7 @@ const Portfolio = () => {
                 />
               </div>
               {/* Decorative elements behind photo */}
-              <div className={`absolute -top-4 -right-4 w-12 h-12 rounded-full border-2 z-20 flex items-center justify-center animate-bounce ${
+              <div className={`absolute -top-4 -right-4 w-12 h-12 rounded-full border-2 z-20 flex items-center justify-center ${
                 isDarkMode ? 'bg-gray-800 border-blue-400 text-blue-400' : 'bg-yellow-400 border-black text-black'
               }`}>
                 <Zap size={20} />

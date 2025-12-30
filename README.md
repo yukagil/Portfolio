@@ -83,5 +83,5 @@ npm run deploy
 
 ## ライセンス
 
-© 2025 Yuta Kanehara. All rights reserved.
+© 2026 Yuta Kanehara. All rights reserved.
 
