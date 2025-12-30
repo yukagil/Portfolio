@@ -70,6 +70,20 @@ export default function Projects() {
   const individualCoaching = {
     title: '個人向けプロダクトコーチング',
     description: 'キャリア相談、プロダクトマネジメントの実務相談など',
+    targetUsers: [
+      {
+        title: '大企業のDX・デジタルプロダクト担当者',
+        description: '大企業の中でDXやデジタルプロダクトを担当されている方'
+      },
+      {
+        title: 'デザイナー・エンジニアからのPM転向',
+        description: 'デザイナーもしくはエンジニアからPMへの転向を考えている方'
+      },
+      {
+        title: 'CPO・VPoPキャリア志向',
+        description: 'CPOやVPoPなどのリーダーシップキャリアに興味をもっている方'
+      }
+    ],
     singleSession: [
       {
         type: 'Granty PM',
@@ -156,9 +170,6 @@ export default function Projects() {
             
             {/* Coaching Types */}
             <div className="mb-6">
-              <h4 className={`text-lg font-bold mb-4 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
-                コーチングの種類と対象
-              </h4>
               <div className="grid md:grid-cols-3 gap-6">
               {coachingTypes.map((coaching, idx) => {
                 const headerColors = ['bg-green-500', 'bg-purple-500', 'bg-red-500'];
@@ -284,6 +295,30 @@ export default function Projects() {
             <p className={`text-sm mb-6 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
               {individualCoaching.description}
             </p>
+            
+            {/* Target Users */}
+            <div className="mb-6">
+              <h4 className={`text-lg font-bold mb-4 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                こういう方からの相談が多いです
+              </h4>
+              <div className="grid md:grid-cols-3 gap-4">
+                {individualCoaching.targetUsers.map((target, idx) => (
+                  <div
+                    key={idx}
+                    className={`p-4 rounded-xl border-2 ${
+                      isDarkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'
+                    }`}
+                  >
+                    <p className={`font-bold mb-2 text-sm ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+                      {target.title}
+                    </p>
+                    <p className={`text-xs font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                      {target.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
             
             {/* Single Session */}
             <div className="mb-6">
