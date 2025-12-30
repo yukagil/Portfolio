@@ -169,12 +169,17 @@ const Portfolio = () => {
             totalPeriod: "2023.02 - Current",
             roles: [
               {
-                title: "執行役員／Chief Product Officer",
-                period: "2023.02 - Current",
+                title: "執行役員CPO",
+                period: "2024.06 - Current",
                 description: "プロダクト戦略の統括および組織づくりをリード。"
+              },
+              {
+                title: "Product Manager",
+                period: "2023.02 - 2024.06",
+                description: "「良い組織が、良いプロダクトを生み出す」という信念のもと、DX支援・プロダクト開発に従事。"
               }
             ],
-            description: "「良い組織が、良いプロダクトを生み出す」という信念のもと、DX支援・プロダクト開発に従事。",
+            description: "",
             tags: ['Product Management', 'Organizational Design', 'DX'],
             isCurrent: true,
             branchType: 'main'
