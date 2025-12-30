@@ -20,7 +20,6 @@ import {
   Video,
   Link as LinkIcon,
   RefreshCw,
-  Building2,
   Lightbulb,
   Globe,
   Tent,
@@ -51,6 +50,7 @@ interface CompanyExperience {
   id: string;
   company: string;
   companyDescription?: string;
+  website?: string;
   totalPeriod: string;
   roles: Role[];
   description: string;
@@ -165,6 +165,7 @@ const Portfolio = () => {
             id: "muture",
             company: "Muture",
             companyDescription: "丸井グループとGoodpatchの合弁会社。プロダクト開発と組織変革を両立し、持続可能な変革を支援するDXパートナー。",
+            website: "https://muture.jp/",
             totalPeriod: "2023.02 - Current",
             roles: [
               {
@@ -182,11 +183,12 @@ const Portfolio = () => {
             id: "marui",
             company: "Marui Unite",
             companyDescription: "丸井グループのデジタルプロダクト開発を行うテックカンパニー。「好き」とデジタルの力で新しい体験を共創する。",
-            totalPeriod: "2023.10 - Current",
+            website: "https://maruiunite.com/",
+            totalPeriod: "2024.10 - Current",
             roles: [
               {
                 title: "Chief Product Officer",
-                period: "2023.10 - Current",
+                period: "2024.10 - Current",
                 description: "丸井グループの新規事業創出、共創のエコシステムづくりをリード。"
               }
             ],
@@ -199,6 +201,7 @@ const Portfolio = () => {
             id: "showcase",
             company: "Showcase Gig",
             companyDescription: "モバイルオーダープラットフォーム「O:der」を提供するベンチャー企業。デジタル化による次世代店舗体験を創出。",
+            website: "https://showcase-gig.com/",
             totalPeriod: "2020.02 - 2023.02",
             roles: [
               {
@@ -215,6 +218,7 @@ const Portfolio = () => {
             id: "dena",
             company: "DeNA",
             companyDescription: "ゲーム、ライブストリーミング、スポーツ、ヘルスケアなど、インターネットとAIを駆使して多角的に事業を展開するIT企業。",
+            website: "https://dena.com/",
             totalPeriod: "2016.04 - 2020.02",
             roles: [
               {
@@ -695,7 +699,7 @@ const SocialLink = ({ href, icon, label, isDarkMode, color }: any) => (
 );
 
 const ExperienceItem = ({ experience, isDarkMode }: any) => {
-  const { company, companyDescription, totalPeriod, roles, tags, description } = experience;
+  const { company, companyDescription, website, totalPeriod, roles, tags, description } = experience;
   
   // 常に濃い青を使用
   const accentColor = isDarkMode ? 'bg-blue-600' : 'bg-blue-500';
@@ -718,9 +722,20 @@ const ExperienceItem = ({ experience, isDarkMode }: any) => {
           : 'bg-white border-black shadow-[4px_4px_0_0_#000] group-hover:shadow-[6px_6px_0_0_#000]'
       }`}>
         <div className="mb-3 flex flex-wrap items-baseline gap-2">
-          <h3 className={`text-2xl font-black ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
-            {company}
-          </h3>
+          {website ? (
+            <a 
+              href={website} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={`text-2xl font-black transition-colors hover:text-blue-500 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}
+            >
+              {company}
+            </a>
+          ) : (
+            <h3 className={`text-2xl font-black ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+              {company}
+            </h3>
+          )}
           <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
             isDarkMode ? 'bg-gray-700 border-gray-500 text-gray-300' : 'bg-gray-100 border-gray-300 text-gray-600'
           }`}>
@@ -728,8 +743,7 @@ const ExperienceItem = ({ experience, isDarkMode }: any) => {
           </span>
         </div>
         {companyDescription && (
-             <p className={`text-sm flex items-center gap-1 mb-3 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-               <Building2 size={12} className="inline" />
+             <p className={`text-sm mb-3 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                {companyDescription}
              </p>
         )}
