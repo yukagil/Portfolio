@@ -818,7 +818,7 @@ const SpeakingItem = ({ speak, isDarkMode }: { speak: Speaking, isDarkMode: bool
       {/* Left column: Date + Thumbnail */}
       <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 flex-shrink-0 max-w-[120px] sm:max-w-none">
         {/* Date */}
-        <div className={`flex-shrink-0 w-full sm:w-28 flex items-center justify-center`}>
+        <div className={`flex-shrink-0 w-full sm:w-28 flex items-center justify-start sm:justify-center`}>
           <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
             isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
           }`}>
@@ -912,7 +912,7 @@ const InterviewItem = ({ interview, isDarkMode }: { interview: Interview, isDark
       {/* Left column: Date + Thumbnail */}
       <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 flex-shrink-0 max-w-[120px] sm:max-w-none">
         {/* Date */}
-        <div className={`flex-shrink-0 w-full sm:w-28 flex items-center justify-center`}>
+        <div className={`flex-shrink-0 w-full sm:w-28 flex items-center justify-start sm:justify-center`}>
           <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
             isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
           }`}>
@@ -976,7 +976,7 @@ const WritingItem = ({ title, source, date, link, imageUrl, isDarkMode }: any) =
       {/* Left column: Date + Thumbnail */}
       <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 flex-shrink-0 max-w-[120px] sm:max-w-none">
         {/* Date */}
-        <div className={`flex-shrink-0 w-full sm:w-28 flex items-center justify-center`}>
+        <div className={`flex-shrink-0 w-full sm:w-28 flex items-center justify-start sm:justify-center`}>
           <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
             isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
           }`}>
