@@ -107,7 +107,7 @@ export default function Projects() {
 
   const corporateCoaching = {
     title: '企業向けプロダクトコーチング',
-    description: '上記3つのコーチングを、Muture または Product People 経由でご依頼いただけます',
+    description: '',
     items: [
       {
         title: 'Muture',
@@ -161,7 +161,8 @@ export default function Projects() {
           
           {/* Corporate Coaching */}
           <div className="mb-12">
-            <h3 className={`text-2xl font-black mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+            <h3 className={`text-2xl font-black mb-2 flex items-center gap-3 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+              <span className="text-3xl">🏢</span>
               {corporateCoaching.title}
             </h3>
             <p className={`text-sm mb-6 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -253,7 +254,8 @@ export default function Projects() {
             
             {/* Service Providers */}
             <div>
-              <h4 className={`text-lg font-bold mb-4 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+              <h4 className={`text-lg font-bold mb-4 flex items-center gap-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                <span className={`text-xl ${isDarkMode ? '' : ''}`}>💼</span>
                 ご依頼窓口
               </h4>
               <div className="grid md:grid-cols-2 gap-4">
@@ -289,7 +291,8 @@ export default function Projects() {
 
           {/* Individual Coaching */}
           <div className="mb-12">
-            <h3 className={`text-2xl font-black mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+            <h3 className={`text-2xl font-black mb-2 flex items-center gap-3 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+              <span className="text-3xl">👤</span>
               {individualCoaching.title}
             </h3>
             <p className={`text-sm mb-6 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -298,31 +301,47 @@ export default function Projects() {
             
             {/* Target Users */}
             <div className="mb-6">
-              <h4 className={`text-lg font-bold mb-4 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+              <h4 className={`text-lg font-bold mb-4 flex items-center gap-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                <span className="text-xl">👥</span>
                 こういう方からの相談が多いです
               </h4>
               <div className="grid md:grid-cols-3 gap-4">
-                {individualCoaching.targetUsers.map((target, idx) => (
-                  <div
-                    key={idx}
-                    className={`p-4 rounded-xl border-2 ${
-                      isDarkMode ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'
-                    }`}
-                  >
-                    <p className={`font-bold mb-2 text-sm ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
-                      {target.title}
-                    </p>
-                    <p className={`text-xs font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                      {target.description}
-                    </p>
-                  </div>
-                ))}
+                {individualCoaching.targetUsers.map((target, idx) => {
+                  const accentColors = [
+                    { bg: 'bg-blue-500', darkBg: 'bg-blue-900', text: 'text-blue-600', darkText: 'text-blue-400' },
+                    { bg: 'bg-purple-500', darkBg: 'bg-purple-900', text: 'text-purple-600', darkText: 'text-purple-400' },
+                    { bg: 'bg-orange-500', darkBg: 'bg-orange-900', text: 'text-orange-600', darkText: 'text-orange-400' }
+                  ];
+                  const accent = accentColors[idx % 3];
+                  
+                  return (
+                    <div
+                      key={idx}
+                      className={`p-4 rounded-xl border-2 transition-all duration-300 hover:-translate-y-1 ${
+                        isDarkMode ? 'bg-gray-800 border-gray-600 hover:border-gray-400' : 'bg-white border-black shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000]'
+                      }`}
+                    >
+                      <div className={`inline-block px-3 py-1 rounded-full mb-3 text-xs font-black ${
+                        isDarkMode ? `${accent.darkBg} ${accent.darkText}` : `${accent.bg} text-white`
+                      }`}>
+                        0{idx + 1}
+                      </div>
+                      <p className={`font-bold mb-2 text-sm ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+                        {target.title}
+                      </p>
+                      <p className={`text-xs font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                        {target.description}
+                      </p>
+                    </div>
+                  );
+                })}
               </div>
             </div>
             
             {/* Single Session */}
             <div className="mb-6">
-              <h4 className={`text-lg font-bold mb-4 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+              <h4 className={`text-lg font-bold mb-4 flex items-center gap-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                <span className="text-xl">💬</span>
                 単発相談
               </h4>
               <div className="grid md:grid-cols-2 gap-4">
@@ -357,7 +376,8 @@ export default function Projects() {
 
             {/* Continuous */}
             <div>
-              <h4 className={`text-lg font-bold mb-4 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+              <h4 className={`text-lg font-bold mb-4 flex items-center gap-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                <span className="text-xl">🤝</span>
                 継続的な相談
               </h4>
               <div className={`p-6 rounded-xl border-2 transition-all duration-300 hover:-translate-y-1 ${
@@ -384,38 +404,77 @@ export default function Projects() {
 
         {/* Partner Coaching - ProductPeople */}
         <section className="mb-16">
-          <div className={`p-6 rounded-2xl border-2 ${
-            isDarkMode ? 'bg-gray-800/50 border-gray-600' : 'bg-blue-50 border-blue-600'
+          <div className={`relative overflow-hidden rounded-2xl border-2 transition-all duration-300 hover:-translate-y-1 ${
+            isDarkMode 
+              ? 'bg-gray-800 border-gray-600 hover:border-gray-400' 
+              : 'bg-white border-black shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000]'
           }`}>
-            <h3 className={`text-xl font-black mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
-              Product People 提携コーチ
-            </h3>
-            <p className={`text-sm mb-4 font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-700'}`}>
-              Product People株式会社の提携コーチとして、プロダクトコーチングを提供しています
-            </p>
-            <div className="flex flex-col gap-2">
-              <a
-                href="https://productpeople.jp/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`inline-flex items-center gap-1 text-sm font-bold ${
-                  isDarkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
-                }`}
-              >
-                Product People 公式サイト
-                <ExternalLink size={14} />
-              </a>
-              <a
-                href="https://note.com/productpeople/n/nd0aa8d2b9a7f"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`inline-flex items-center gap-1 text-sm font-bold ${
-                  isDarkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
-                }`}
-              >
-                ビギナー向け無料コーチング（不定期開催）
-                <ExternalLink size={14} />
-              </a>
+            {/* Header with gradient */}
+            <div className={`p-6 border-b-2 ${
+              isDarkMode ? 'bg-gradient-to-r from-blue-900 to-purple-900 border-gray-600' : 'bg-gradient-to-r from-blue-500 to-purple-500 border-black'
+            }`}>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="p-2 rounded-lg bg-white/20 backdrop-blur-sm">
+                  <Briefcase size={24} className="text-white" />
+                </div>
+                <h3 className="text-2xl font-black text-white">
+                  Product People 提携コーチ
+                </h3>
+              </div>
+              <p className="text-sm font-medium text-white/90">
+                Product People株式会社の提携コーチとして、プロダクトコーチングを提供しています
+              </p>
+            </div>
+            
+            {/* Content */}
+            <div className="p-6">
+              <div className="grid md:grid-cols-2 gap-4">
+                <a
+                  href="https://productpeople.jp/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`group p-4 rounded-xl border-2 transition-all duration-300 hover:-translate-y-1 ${
+                    isDarkMode 
+                      ? 'bg-gray-700 border-gray-600 hover:border-blue-400' 
+                      : 'bg-gray-50 border-gray-300 hover:border-blue-500 hover:shadow-[2px_2px_0_0_#3b82f6]'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <p className={`font-bold ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+                      Product People 公式サイト
+                    </p>
+                    <ExternalLink size={16} className={`transition-transform group-hover:translate-x-1 ${
+                      isDarkMode ? 'text-blue-400' : 'text-blue-600'
+                    }`} />
+                  </div>
+                  <p className={`text-xs font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    サービス詳細・お問い合わせ
+                  </p>
+                </a>
+                
+                <a
+                  href="https://note.com/productpeople/n/nd0aa8d2b9a7f"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`group p-4 rounded-xl border-2 transition-all duration-300 hover:-translate-y-1 ${
+                    isDarkMode 
+                      ? 'bg-gray-700 border-gray-600 hover:border-purple-400' 
+                      : 'bg-gray-50 border-gray-300 hover:border-purple-500 hover:shadow-[2px_2px_0_0_#a855f7]'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <p className={`font-bold ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+                      無料コーチング
+                    </p>
+                    <ExternalLink size={16} className={`transition-transform group-hover:translate-x-1 ${
+                      isDarkMode ? 'text-purple-400' : 'text-purple-600'
+                    }`} />
+                  </div>
+                  <p className={`text-xs font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    ビギナー向け（不定期開催）
+                  </p>
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -429,21 +488,34 @@ export default function Projects() {
             {personalProducts.map((product, idx) => (
               <div
                 key={idx}
-                className={`p-6 rounded-2xl border-2 border-dashed transition-all duration-300 hover:-translate-y-1 ${
+                className={`relative p-6 rounded-2xl border-2 border-dashed transition-all duration-300 hover:-translate-y-1 hover:rotate-1 ${
                   isDarkMode ? 'bg-gray-800 border-gray-600 hover:border-gray-400' : 'bg-white border-black shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000]'
                 }`}
               >
-                <div className="flex items-center justify-between mb-4">
-                  <span className={`text-xs font-bold px-2 py-1 rounded ${
-                    isDarkMode ? 'bg-yellow-500/20 text-yellow-400' : 'bg-yellow-100 text-yellow-700'
+                {/* Decorative element */}
+                <div className={`absolute -top-3 -right-3 w-12 h-12 rounded-full border-2 flex items-center justify-center text-2xl ${
+                  isDarkMode ? 'bg-gray-800 border-gray-600' : 'bg-yellow-400 border-black'
+                }`}>
+                  🚀
+                </div>
+                
+                <div className="flex items-center gap-2 mb-4">
+                  <span className={`text-xs font-bold px-3 py-1 rounded-full border-2 ${
+                    isDarkMode 
+                      ? 'bg-yellow-500/20 border-yellow-500/30 text-yellow-400' 
+                      : 'bg-yellow-100 border-yellow-600 text-yellow-700'
                   }`}>
                     {product.status}
                   </span>
+                  <span className={`text-xs font-mono ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+                    ···
+                  </span>
                 </div>
+                
                 <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`}>
                   {product.title}
                 </h3>
-                <p className={`text-sm ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+                <p className={`text-sm font-medium ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
                   {product.description}
                 </p>
               </div>
