@@ -32,8 +32,12 @@ import staticWritings from './data/writings.json';
 import staticSpeakings from './data/speakings.json';
 import staticInterviews from './data/interviews.json';
 
-// 最終更新日 (手動更新またはビルド時に更新)
-const LAST_UPDATED = "2025.12.30";
+// 最終更新日 (ビルド時に自動生成)
+const LAST_UPDATED = new Date().toLocaleDateString('ja-JP', { 
+  year: 'numeric', 
+  month: '2-digit', 
+  day: '2-digit' 
+}).replace(/\//g, '.');
 
 // --- Types & Interfaces ---
 
@@ -443,11 +447,17 @@ const Portfolio = () => {
                 {data.socials.facebook && <SocialLink href={data.socials.facebook} icon={<Facebook size={20} />} label="Facebook" isDarkMode={isDarkMode} color="bg-blue-500" />}
               </div>
 
-              <div className="flex items-center text-sm font-bold font-mono">
-                <MapPin size={18} className={`mr-2 ${isDarkMode ? 'text-red-400' : 'text-red-500'}`} />
-                <span className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>{data.profile.location}</span>
-                <span className="mx-3 text-gray-400">|</span>
-                <span role="img" aria-label="camping">🏕️ {data.profile.hobbies}</span>
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center text-sm font-bold font-mono">
+                  <MapPin size={18} className={`mr-2 ${isDarkMode ? 'text-red-400' : 'text-red-500'}`} />
+                  <span className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>{data.profile.location}</span>
+                  <span className="mx-3 text-gray-400">|</span>
+                  <span role="img" aria-label="camping">🏕️ {data.profile.hobbies}</span>
+                </div>
+                <div className="flex items-center text-xs font-bold font-mono opacity-70">
+                  <RefreshCw size={14} className={`mr-2 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`} />
+                  <span className={isDarkMode ? 'text-gray-500' : 'text-gray-400'}>Last updated: {LAST_UPDATED}</span>
+                </div>
               </div>
             </div>
             
@@ -648,13 +658,7 @@ const Portfolio = () => {
         <footer className={`mt-20 pt-8 border-t-2 text-center text-sm font-bold font-mono ${
           isDarkMode ? 'border-gray-700 text-gray-500' : 'border-gray-200 text-gray-400'
         }`}>
-          <div className="flex flex-col items-center justify-center gap-2">
-            <div className="flex items-center gap-2 text-xs opacity-70">
-              <RefreshCw size={12} />
-              <span>Last updated: {LAST_UPDATED}</span>
-            </div>
-            <p>© {new Date().getFullYear()} {data.profile.name}. All rights reserved.</p>
-          </div>
+          <p>© {new Date().getFullYear()} {data.profile.name}. All rights reserved.</p>
         </footer>
       </main>
     </div>
@@ -824,12 +828,12 @@ const SpeakingItem = ({ speak, isDarkMode }: { speak: Speaking, isDarkMode: bool
 
         {/* Thumbnail */}
         {speak.imageUrl ? (
-          <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
+          <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-video rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
             <img src={speak.imageUrl} alt={speak.title} className="w-full h-full object-cover" />
           </div>
         ) : (
           <div
-            className={`flex flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden relative items-center justify-center ${
+            className={`flex flex-shrink-0 w-20 sm:w-28 aspect-video rounded overflow-hidden relative items-center justify-center ${
               isDarkMode
                 ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
                 : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
@@ -918,12 +922,12 @@ const InterviewItem = ({ interview, isDarkMode }: { interview: Interview, isDark
 
         {/* Thumbnail */}
         {interview.imageUrl ? (
-          <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
+          <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-video rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
             <img src={interview.imageUrl} alt={interview.title} className="w-full h-full object-cover" />
           </div>
         ) : (
           <div
-            className={`flex flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden relative items-center justify-center ${
+            className={`flex flex-shrink-0 w-20 sm:w-28 aspect-video rounded overflow-hidden relative items-center justify-center ${
               isDarkMode
                 ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
                 : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
@@ -982,12 +986,12 @@ const WritingItem = ({ title, source, date, link, imageUrl, isDarkMode }: any) =
 
         {/* Thumbnail */}
         {imageUrl ? (
-          <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
+          <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-video rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
             <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
           </div>
         ) : (
           <div
-            className={`flex flex-shrink-0 w-20 sm:w-28 aspect-[1.91/1] rounded overflow-hidden relative items-center justify-center ${
+            className={`flex flex-shrink-0 w-20 sm:w-28 aspect-video rounded overflow-hidden relative items-center justify-center ${
               isDarkMode
                 ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
                 : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
