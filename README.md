@@ -12,23 +12,6 @@ Yuta Kanehara のポートフォリオサイト
 - **Icons**: Lucide React
 - **Hosting**: GitHub Pages
 
-## 特徴
-
-### 📊 静的データ生成
-ビルド時に外部APIからデータを取得し、静的JSONとして埋め込む設計：
-- **note.com RSS** → 記事一覧 (writings)
-- **microCMS API** → 登壇実績 (speakings) / インタビュー (interviews)
-
-これにより：
-- ✅ APIキーが本番環境に露出しない
-- ✅ CORS問題なし
-- ✅ 高速な初期表示
-
-### 🔒 SEO対策
-検索エンジンにインデックスされない設定：
-- `robots.txt` でクローラーをブロック
-- `<meta name="robots" content="noindex, nofollow">` を設定
-
 ## セットアップ
 
 ### 1. 依存関係のインストール
