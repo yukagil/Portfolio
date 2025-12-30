@@ -145,9 +145,21 @@ export default function Projects() {
             <SectionTitle title="プロダクトコーチング" icon={<Briefcase size={24} />} isDarkMode={isDarkMode} />
           </div>
           
-          {/* Coaching Types */}
+          {/* Corporate Coaching */}
           <div className="mb-12">
-            <div className="grid md:grid-cols-3 gap-6">
+            <h3 className={`text-2xl font-black mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+              {corporateCoaching.title}
+            </h3>
+            <p className={`text-sm mb-6 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              {corporateCoaching.description}
+            </p>
+            
+            {/* Coaching Types */}
+            <div className="mb-6">
+              <h4 className={`text-lg font-bold mb-4 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                コーチングの種類と対象
+              </h4>
+              <div className="grid md:grid-cols-3 gap-6">
               {coachingTypes.map((coaching, idx) => {
                 const headerColors = ['bg-green-500', 'bg-purple-500', 'bg-red-500'];
                 const darkHeaderColors = ['bg-green-900', 'bg-purple-900', 'bg-red-900'];
@@ -225,49 +237,47 @@ export default function Projects() {
                   </div>
                 );
               })}
+              </div>
             </div>
-          </div>
-
-          {/* Corporate Coaching */}
-          <div className="mb-12">
-            <h3 className={`text-2xl font-black mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
-              {corporateCoaching.title}
-            </h3>
-            <p className={`text-sm mb-6 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-              {corporateCoaching.description}
-            </p>
-            <div className="grid md:grid-cols-2 gap-4">
-              {corporateCoaching.items.map((item, idx) => (
-                <div
-                  key={idx}
-                  className={`p-6 rounded-xl border-2 transition-all duration-300 hover:-translate-y-1 ${
-                    isDarkMode ? 'bg-gray-800 border-gray-600 hover:border-gray-400' : 'bg-white border-black shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000]'
-                  }`}
-                >
-                  <p className={`text-lg font-black mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
-                    {item.title}
-                  </p>
-                  <p className={`text-sm mb-4 font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                    {item.description}
-                  </p>
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-1 text-sm font-bold ${
-                      isDarkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
+            
+            {/* Service Providers */}
+            <div>
+              <h4 className={`text-lg font-bold mb-4 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                ご依頼窓口
+              </h4>
+              <div className="grid md:grid-cols-2 gap-4">
+                {corporateCoaching.items.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className={`p-6 rounded-xl border-2 transition-all duration-300 hover:-translate-y-1 ${
+                      isDarkMode ? 'bg-gray-800 border-gray-600 hover:border-gray-400' : 'bg-white border-black shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000]'
                     }`}
                   >
-                    {item.linkText}
-                    <ExternalLink size={14} />
-                  </a>
-                </div>
-              ))}
+                    <p className={`text-lg font-black mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+                      {item.title}
+                    </p>
+                    <p className={`text-sm mb-4 font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                      {item.description}
+                    </p>
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`inline-flex items-center gap-1 text-sm font-bold ${
+                        isDarkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
+                      }`}
+                    >
+                      {item.linkText}
+                      <ExternalLink size={14} />
+                    </a>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
           {/* Individual Coaching */}
-          <div>
+          <div className="mb-12">
             <h3 className={`text-2xl font-black mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
               {individualCoaching.title}
             </h3>
