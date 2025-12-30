@@ -183,7 +183,7 @@ const Portfolio = () => {
             id: "marui",
             company: "Marui Unite",
             companyDescription: "丸井グループのデジタルプロダクト開発を行うテックカンパニー。「好き」とデジタルの力で新しい体験を共創する。",
-            website: "https://maruiunite.com/",
+            website: "https://marui-unite.co.jp/",
             totalPeriod: "2024.10 - Current",
             roles: [
               {
@@ -201,7 +201,7 @@ const Portfolio = () => {
             id: "showcase",
             company: "Showcase Gig",
             companyDescription: "モバイルオーダープラットフォーム「O:der」を提供するベンチャー企業。デジタル化による次世代店舗体験を創出。",
-            website: "https://showcase-gig.com/",
+            website: "https://www.showcase-gig.com/",
             totalPeriod: "2020.02 - 2023.02",
             roles: [
               {
@@ -727,9 +727,10 @@ const ExperienceItem = ({ experience, isDarkMode }: any) => {
               href={website} 
               target="_blank" 
               rel="noopener noreferrer"
-              className={`text-2xl font-black transition-colors hover:text-blue-500 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}
+              className={`text-2xl font-black transition-colors hover:text-blue-500 flex items-center gap-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}
             >
               {company}
+              <ExternalLink size={20} className="opacity-60" />
             </a>
           ) : (
             <h3 className={`text-2xl font-black ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
