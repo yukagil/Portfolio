@@ -1,107 +1,75 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Moon, Sun, Menu, X, Tent, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Moon, Sun, Tent, ArrowRight, ArrowLeft } from 'lucide-react';
 
 interface HeaderProps {
   isDarkMode: boolean;
   onToggleTheme: () => void;
-  currentPage: 'home' | 'projects';
+  currentPage: 'home' | 'services';
 }
 
 export default function Header({ isDarkMode, onToggleTheme, currentPage }: HeaderProps) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
-    <header className={`sticky top-0 z-50 border-b-4 border-black transition-colors duration-300 ${
-      isDarkMode ? 'bg-gray-800' : 'bg-white'
+    <header className={`sticky top-0 z-50 border-b-4 transition-colors duration-300 ${
+      isDarkMode 
+        ? 'bg-[#0a0a0a]/95 border-cyan-500 shadow-[0_4px_20px_rgba(6,182,212,0.3)]' 
+        : 'bg-white/95 border-black shadow-[0_4px_0_0_rgba(0,0,0,0.1)]'
     }`}>
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-3 group">
-            <Tent size={32} className={isDarkMode ? 'text-blue-400' : 'text-blue-600'} />
-            <span className={`text-2xl font-black ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
-              Yuta.Kanehara
+      <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 sm:h-16 gap-3">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-2 flex-shrink-0">
+            <span className={`w-8 h-8 flex items-center justify-center rounded-lg border-2 transition-all flex-shrink-0 ${
+              isDarkMode ? 'bg-cyan-500 border-cyan-400 text-black shadow-[0_0_10px_rgba(6,182,212,0.5)]' : 'bg-blue-500 border-black text-white'
+            }`}>
+              <Tent size={18} />
+            </span>
+            <span className={`text-xl sm:text-2xl font-extrabold tracking-tighter ${
+              isDarkMode ? 'text-cyan-400' : 'text-gray-900'
+            }`}>
+              Yuta<span className={isDarkMode ? 'text-pink-500' : 'text-red-500'}>.</span>Kanehara
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center space-x-6">
+          {/* Navigation */}
+          <nav className="flex items-center gap-2">
             {currentPage === 'home' ? (
               <Link
-                to="/projects"
-                className={`flex items-center gap-2 font-bold transition-colors ${
-                  isDarkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-700 hover:text-blue-600'
+                to="/services"
+                className={`flex items-center gap-1.5 px-3 py-2 rounded-lg border-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 ${
+                  isDarkMode
+                    ? 'bg-purple-600 border-purple-400 text-white hover:bg-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.4)] hover:shadow-[0_0_20px_rgba(168,85,247,0.6)]'
+                    : 'bg-blue-500 border-black text-white hover:bg-blue-600 shadow-[2px_2px_0_0_#000] hover:shadow-[3px_3px_0_0_#000]'
                 }`}
               >
-                Projects
-                <ArrowRight size={18} />
+                <span>Services</span>
+                <ArrowRight size={16} />
               </Link>
             ) : (
               <Link
                 to="/"
-                className={`flex items-center gap-2 font-bold transition-colors ${
-                  isDarkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-700 hover:text-blue-600'
+                className={`flex items-center gap-1.5 px-3 py-2 rounded-lg border-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 ${
+                  isDarkMode
+                    ? 'bg-gray-800 border-cyan-500 text-cyan-400 hover:bg-gray-700 shadow-[0_0_10px_rgba(6,182,212,0.3)] hover:shadow-[0_0_15px_rgba(6,182,212,0.5)]'
+                    : 'bg-white border-black text-gray-900 hover:bg-gray-50 shadow-[2px_2px_0_0_#000] hover:shadow-[3px_3px_0_0_#000]'
                 }`}
               >
-                <ArrowLeft size={18} />
-                Back to Home
+                <ArrowLeft size={16} />
+                <span>Home</span>
               </Link>
             )}
+            
             <button
               onClick={onToggleTheme}
-              className={`p-2 rounded-lg transition-colors ${
-                isDarkMode ? 'bg-gray-700 hover:bg-gray-600 text-yellow-400' : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+              className={`p-2 rounded-lg border-2 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none ${
+                isDarkMode
+                  ? 'bg-yellow-500 border-yellow-400 text-black shadow-[0_0_15px_rgba(234,179,8,0.4)] hover:shadow-[0_0_20px_rgba(234,179,8,0.6)]'
+                  : 'bg-yellow-400 border-black text-black shadow-[2px_2px_0_0_#000]'
               }`}
             >
-              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+              {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
             </button>
           </nav>
-
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`md:hidden p-2 rounded-lg ${
-              isDarkMode ? 'bg-gray-700 text-gray-100' : 'bg-gray-100 text-gray-900'
-            }`}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
         </div>
-
-        {isMenuOpen && (
-          <nav className="md:hidden mt-4 pb-4 space-y-2">
-            {currentPage === 'home' ? (
-              <Link
-                to="/projects"
-                className={`block px-4 py-2 rounded-lg font-bold ${
-                  isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Projects
-              </Link>
-            ) : (
-              <Link
-                to="/"
-                className={`block px-4 py-2 rounded-lg font-bold ${
-                  isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Back to Home
-              </Link>
-            )}
-            <button
-              onClick={() => {
-                onToggleTheme();
-                setIsMenuOpen(false);
-              }}
-              className={`w-full text-left px-4 py-2 rounded-lg font-bold ${
-                isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'
-              }`}
-            >
-              {isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
-            </button>
-          </nav>
-        )}
       </div>
     </header>
   );

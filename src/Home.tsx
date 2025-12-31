@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import SectionTitle from './components/SectionTitle';
+import { useInView } from './hooks/useInView';
 import { 
   Briefcase, 
   ExternalLink, 
@@ -116,16 +118,12 @@ interface PortfolioData {
 }
 
 
-const Portfolio = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+interface PortfolioProps {
+  isDarkMode: boolean;
+  setIsDarkMode: (value: boolean) => void;
+}
 
-  // System preference detection
-  useEffect(() => {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setIsDarkMode(true);
-    }
-  }, []);
-
+const Portfolio = ({ isDarkMode, setIsDarkMode }: PortfolioProps) => {
   const toggleTheme = () => setIsDarkMode(!isDarkMode);
 
   // --- Static Data ---
@@ -134,7 +132,7 @@ const Portfolio = () => {
           name: "Yuta Kanehara",
           role: "Product Manager",
           subRole: "Engineering × UX × Org Design",
-          description: "エンジニアリングのバックグラウンド、UX戦略から推進までの実行力、そして組織デザインによるプロダクトマネジメント。\nこの3つの強みを掛け合わせ、toC/toB/Dev/SaaS/プラットフォーム/0→1など、あらゆるフェーズのプロダクトグロースを牽引します。",
+          description: "エンジニア出身のプロダクトマネージャー。UX戦略の立案から実行、組織デザインまで一気通貫で推進し、あらゆるフェーズのプロダクトグロースを牽引します。",
           location: "Tokyo, Japan",
           hobbies: "Camping Lover",
           imageUrl: "https://storage.googleapis.com/studio-cms-assets/projects/Z9qp7nJGOP/s-1120x1120_v-fs_webp_2a3f9622-e54d-4f8b-8670-510ba156906d_small.webp"
@@ -294,7 +292,7 @@ const Portfolio = () => {
                 PRODUCT MANAGER
               </div>
               <h1 className="text-5xl md:text-6xl font-black tracking-tight mb-6 leading-none">
-                {data.profile.role} <br />
+                {data.profile.name} <br />
                 <span className={`${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}>{data.profile.subRole}</span>
               </h1>
               <div className={`p-6 rounded-2xl border-2 mb-8 relative ${
@@ -328,9 +326,9 @@ const Portfolio = () => {
               </div>
               
               <div className="flex flex-wrap gap-4 mb-8">
-                {data.socials.twitter && <SocialLink href={data.socials.twitter} icon={<Twitter size={20} />} label="X (Twitter)" isDarkMode={isDarkMode} color="bg-blue-400" />}
-                {data.socials.linkedin && <SocialLink href={data.socials.linkedin} icon={<Linkedin size={20} />} label="LinkedIn" isDarkMode={isDarkMode} color="bg-blue-600" />}
-                {data.socials.facebook && <SocialLink href={data.socials.facebook} icon={<Facebook size={20} />} label="Facebook" isDarkMode={isDarkMode} color="bg-blue-500" />}
+                {data.socials.twitter && <SocialLink href={data.socials.twitter} icon={<Twitter size={20} />} label="X (Twitter)" isDarkMode={isDarkMode} neonColor="cyan" lightBg="bg-[#1DA1F2]" />}
+                {data.socials.linkedin && <SocialLink href={data.socials.linkedin} icon={<Linkedin size={20} />} label="LinkedIn" isDarkMode={isDarkMode} neonColor="blue" lightBg="bg-[#0A66C2]" />}
+                {data.socials.facebook && <SocialLink href={data.socials.facebook} icon={<Facebook size={20} />} label="Facebook" isDarkMode={isDarkMode} neonColor="pink" lightBg="bg-[#1877F2]" />}
               </div>
 
               <div className="flex flex-col gap-2">
@@ -527,47 +525,34 @@ const Portfolio = () => {
             お気軽にSNSでご連絡ください。X、LinkedIn、Facebookどちらからでもどうぞ。
           </p>
           <div className="flex justify-center flex-wrap gap-4">
-            <a 
+            <ContactButton 
               href={data.socials.twitter}
-              className={`px-8 py-4 rounded-xl font-bold flex items-center border-2 transition-all active:translate-y-1 active:shadow-none ${
-                isDarkMode
-                  ? 'bg-blue-600 border-blue-400 text-white shadow-[4px_4px_0_0_#60a5fa]'
-                  : 'bg-blue-500 border-black text-white shadow-[4px_4px_0_0_#000]'
-              }`}
-            >
-              <Twitter size={24} className="mr-3" />
-              Contact via X
-            </a>
-            <a 
+              icon={<Twitter size={24} className="mr-3" />}
+              label="Contact via X"
+              isDarkMode={isDarkMode}
+              neonColor="cyan"
+              lightBg="bg-[#1DA1F2]"
+            />
+            <ContactButton 
               href={data.socials.linkedin}
-              className={`px-8 py-4 rounded-xl font-bold flex items-center border-2 transition-all active:translate-y-1 active:shadow-none ${
-                isDarkMode
-                  ? 'bg-blue-700 border-blue-500 text-white shadow-[4px_4px_0_0_#60a5fa]'
-                  : 'bg-blue-600 border-black text-white shadow-[4px_4px_0_0_#000]'
-              }`}
-            >
-              <Linkedin size={24} className="mr-3" />
-              Contact via LinkedIn
-            </a>
-            <a 
+              icon={<Linkedin size={24} className="mr-3" />}
+              label="Contact via LinkedIn"
+              isDarkMode={isDarkMode}
+              neonColor="blue"
+              lightBg="bg-[#0A66C2]"
+            />
+            <ContactButton 
               href={data.socials.facebook}
-              className={`px-8 py-4 rounded-xl font-bold flex items-center border-2 transition-all active:translate-y-1 active:shadow-none ${
-                isDarkMode
-                  ? 'bg-blue-600 border-blue-400 text-white shadow-[4px_4px_0_0_#60a5fa]'
-                  : 'bg-blue-500 border-black text-white shadow-[4px_4px_0_0_#000]'
-              }`}
-            >
-              <Facebook size={24} className="mr-3" />
-              Contact via Facebook
-            </a>
+              icon={<Facebook size={24} className="mr-3" />}
+              label="Contact via Facebook"
+              isDarkMode={isDarkMode}
+              neonColor="pink"
+              lightBg="bg-[#1877F2]"
+            />
           </div>
         </section>
 
-        <footer className={`mt-20 pt-8 border-t-2 text-center text-sm font-bold font-mono ${
-          isDarkMode ? 'border-gray-700 text-gray-500' : 'border-gray-200 text-gray-400'
-        }`}>
-          <p>© {new Date().getFullYear()} {data.profile.name}. All rights reserved.</p>
-        </footer>
+        <Footer isDarkMode={isDarkMode} />
       </main>
     </div>
   );
@@ -575,23 +560,66 @@ const Portfolio = () => {
 
 // --- Sub-components (Updated with Pop Design) ---
 
-const SocialLink = ({ href, icon, label, isDarkMode, color }: any) => (
-  <a
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    className={`p-3 rounded-xl border-2 transition-all duration-200 hover:-translate-y-1 active:translate-y-0 active:shadow-none ${
-      isDarkMode 
-        ? 'bg-gray-800 border-gray-600 text-gray-300 hover:text-white hover:border-white' 
-        : `${color || 'bg-white'} border-black text-black shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000]`
-    }`}
-    aria-label={label}
-  >
-    {icon}
-  </a>
-);
+const ContactButton = ({ href, icon, label, isDarkMode, neonColor, lightBg }: any) => {
+  const { ref, isInView } = useInView({ threshold: 0.1 });
+  const neonColors: any = {
+    'cyan': { border: 'border-cyan-400', text: 'text-cyan-400', glow: 'shadow-[0_0_15px_rgba(34,211,238,0.3)]', hoverGlow: 'hover:shadow-[0_0_25px_rgba(34,211,238,0.5)]' },
+    'blue': { border: 'border-blue-400', text: 'text-blue-400', glow: 'shadow-[0_0_15px_rgba(96,165,250,0.3)]', hoverGlow: 'hover:shadow-[0_0_25px_rgba(96,165,250,0.5)]' },
+    'pink': { border: 'border-pink-400', text: 'text-pink-400', glow: 'shadow-[0_0_15px_rgba(244,114,182,0.3)]', hoverGlow: 'hover:shadow-[0_0_25px_rgba(244,114,182,0.5)]' }
+  };
+  
+  const neon = neonColors[neonColor] || neonColors['cyan'];
+  
+  return (
+    <a 
+      ref={ref as any}
+      href={href}
+      className={`px-8 py-4 rounded-xl font-bold flex items-center border-2 transition-all hover:-translate-y-1 mobile-tap-animation mobile-hover-lift ${
+        isInView ? 'in-view' : ''
+      } ${
+        isDarkMode
+          ? `bg-transparent ${neon.border} ${neon.text} ${neon.glow} ${neon.hoverGlow}`
+          : `${lightBg} border-black text-white shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] [&_svg]:fill-white mobile-tap-shadow`
+      }`}
+    >
+      {icon}
+      {label}
+    </a>
+  );
+};
+
+const SocialLink = ({ href, icon, label, isDarkMode, neonColor, lightBg }: any) => {
+  const { ref, isInView } = useInView({ threshold: 0.1 });
+  const neonColors: any = {
+    'cyan': { border: 'border-cyan-400', text: 'text-cyan-400', glow: 'shadow-[0_0_10px_rgba(34,211,238,0.3)]', hoverGlow: 'hover:shadow-[0_0_20px_rgba(34,211,238,0.5)]' },
+    'blue': { border: 'border-blue-400', text: 'text-blue-400', glow: 'shadow-[0_0_10px_rgba(96,165,250,0.3)]', hoverGlow: 'hover:shadow-[0_0_20px_rgba(96,165,250,0.5)]' },
+    'pink': { border: 'border-pink-400', text: 'text-pink-400', glow: 'shadow-[0_0_10px_rgba(244,114,182,0.3)]', hoverGlow: 'hover:shadow-[0_0_20px_rgba(244,114,182,0.5)]' }
+  };
+  
+  const neon = neonColors[neonColor] || neonColors['cyan'];
+  
+  return (
+    <a
+      ref={ref as any}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`p-3 rounded-xl border-2 transition-all duration-200 hover:-translate-y-1 mobile-tap-animation mobile-hover-lift ${
+        isInView ? 'in-view' : ''
+      } ${
+        isDarkMode 
+          ? `bg-transparent ${neon.border} ${neon.text} ${neon.glow} ${neon.hoverGlow}` 
+          : `${lightBg} border-black text-white shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] [&_svg]:fill-white mobile-tap-shadow`
+      }`}
+      aria-label={label}
+    >
+      {icon}
+    </a>
+  );
+};
 
 const ExperienceItem = ({ experience, isDarkMode }: any) => {
+  const { ref, isInView } = useInView({ threshold: 0.1 });
   const { company, companyDescription, website, totalPeriod, roles, description } = experience;
   
   // 常に濃い青を使用
@@ -609,10 +637,14 @@ const ExperienceItem = ({ experience, isDarkMode }: any) => {
         <div className={`w-3 h-3 rounded-full ${accentColor}`}></div>
       </div>
       
-      <div className={`p-6 rounded-2xl border-2 transition-all duration-300 group-hover:-translate-y-1 ${
+      <div 
+        ref={ref as any}
+        className={`p-6 rounded-2xl border-2 transition-all duration-300 group-hover:-translate-y-1 mobile-tap-animation mobile-hover-lift ${
+          isInView ? 'in-view' : ''
+        } ${
         isDarkMode 
           ? 'bg-gray-800 border-gray-600 group-hover:border-gray-400' 
-          : 'bg-white border-black shadow-[4px_4px_0_0_#000] group-hover:shadow-[6px_6px_0_0_#000]'
+          : 'bg-white border-black shadow-[4px_4px_0_0_#000] group-hover:shadow-[6px_6px_0_0_#000] mobile-tap-shadow'
       }`}>
         <div className="mb-3 flex flex-wrap items-center gap-2">
           {website ? (
@@ -685,16 +717,21 @@ const ExperienceItem = ({ experience, isDarkMode }: any) => {
 };
 
 const PhilosophyCard = ({ icon, title, content, isDarkMode, index }: any) => {
+  const { ref, isInView } = useInView({ threshold: 0.1 });
   const colors = ['bg-red-500', 'bg-blue-500', 'bg-yellow-400', 'bg-green-500'];
   const darkColors = ['bg-red-900', 'bg-blue-900', 'bg-yellow-900', 'bg-green-900'];
   const headerColor = isDarkMode ? darkColors[index % 4] : colors[index % 4];
   const headerText = isDarkMode ? 'text-white' : (index % 4 === 2 ? 'text-black' : 'text-white'); // Yellow背景のみ黒文字
 
   return (
-    <div className={`h-full flex flex-col rounded-2xl border-2 overflow-hidden transition-all duration-300 hover:-translate-y-1 ${
+    <div 
+      ref={ref as any}
+      className={`h-full flex flex-col rounded-2xl border-2 overflow-hidden transition-all duration-300 hover:-translate-y-1 mobile-tap-animation mobile-hover-lift ${
+        isInView ? 'in-view' : ''
+      } ${
       isDarkMode 
         ? 'bg-gray-800 border-gray-600 hover:border-gray-400' 
-        : 'bg-white border-black shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000]'
+        : 'bg-white border-black shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] mobile-tap-shadow'
     }`}>
       <div className={`p-4 border-b-2 ${isDarkMode ? 'border-gray-600' : 'border-black'} ${headerColor} ${headerText} flex items-center gap-3`}>
         <div className={`p-1.5 rounded bg-white/20 backdrop-blur-sm`}>{icon}</div>
@@ -707,23 +744,44 @@ const PhilosophyCard = ({ icon, title, content, isDarkMode, index }: any) => {
   );
 };
 
-const SpeakingItem = ({ speak, isDarkMode }: { speak: Speaking, isDarkMode: boolean }) => (
-  <div className={`group relative p-1 rounded-xl transition-all duration-200 hover:-translate-y-0.5 ${
+const SpeakingItem = ({ speak, isDarkMode }: { speak: Speaking, isDarkMode: boolean }) => {
+  const { ref, isInView } = useInView({ threshold: 0.1 });
+  
+  return (
+  <div 
+    ref={ref as React.RefObject<HTMLDivElement>}
+    className={`group relative p-1 rounded-xl transition-all duration-200 hover:-translate-y-0.5 mobile-tap-animation mobile-hover-lift ${
+      isInView ? 'in-view' : ''
+    } ${
       isDarkMode 
         ? 'hover:bg-gray-800' 
         : 'hover:bg-white'
     }`}>
     <div className={`absolute inset-0 rounded-xl border-2 pointer-events-none transition-colors ${
       isDarkMode 
-        ? 'border-gray-700 group-hover:border-blue-500' 
-        : 'border-transparent group-hover:border-black group-hover:shadow-[2px_2px_0_0_#000]'
+        ? 'border-transparent group-hover:border-blue-500' 
+        : 'border-transparent group-hover:border-black group-hover:shadow-[2px_2px_0_0_#000] mobile-tap-shadow'
     }`}></div>
     
-    <div className="relative p-2 flex gap-3">
-      {/* Left column: Date + Thumbnail */}
-      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 flex-shrink-0 max-w-[120px] sm:max-w-none">
-        {/* Date */}
-        <div className={`flex-shrink-0 w-full sm:w-28 flex items-center justify-start sm:justify-center`}>
+    <div className="relative p-2">
+      {/* Date + Event Name - Mobile only */}
+      <div className="sm:hidden mb-2 flex items-center gap-3">
+        <div className="w-20 flex-shrink-0">
+          <span className={`text-xs font-bold font-mono py-1 rounded border block text-center w-full ${
+            isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
+          }`} style={{ fontSize: '10px' }}>
+            {speak.date}
+          </span>
+        </div>
+        <div className={`text-xs font-bold leading-tight flex-1 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+          {speak.event}
+        </div>
+      </div>
+      
+      {/* Thumbnail + Title - Mobile / Full layout - Desktop */}
+      <div className="flex gap-3 items-center sm:items-start">
+        {/* Date - Desktop */}
+        <div className="hidden sm:flex flex-shrink-0 w-28 items-center justify-center">
           <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
             isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
           }`}>
@@ -733,12 +791,12 @@ const SpeakingItem = ({ speak, isDarkMode }: { speak: Speaking, isDarkMode: bool
 
         {/* Thumbnail */}
         {speak.imageUrl ? (
-          <div className={`block flex-shrink-0 w-full sm:w-28 aspect-video rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
+          <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-video rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
             <img src={speak.imageUrl} alt={speak.title} className="w-full h-full object-cover" />
           </div>
         ) : (
           <div
-            className={`flex flex-shrink-0 w-full sm:w-28 aspect-video rounded overflow-hidden relative items-center justify-center ${
+            className={`flex flex-shrink-0 w-20 sm:w-28 aspect-video rounded overflow-hidden relative items-center justify-center ${
               isDarkMode
                 ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
                 : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
@@ -755,12 +813,11 @@ const SpeakingItem = ({ speak, isDarkMode }: { speak: Speaking, isDarkMode: bool
             <Mic2 size={14} className={isDarkMode ? 'text-gray-300' : 'text-gray-700'} />
           </div>
         )}
-      </div>
-      
-      {/* Content */}
-      <div className="flex-1 min-w-0 flex flex-col justify-center py-0.5">
-        {/* Event Name */}
-        <div className={`text-xs font-bold leading-tight ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+        
+        {/* Content */}
+        <div className="flex-1 min-w-0 flex flex-col justify-center py-0.5">
+        {/* Event Name - Desktop */}
+        <div className={`hidden sm:block text-xs font-bold leading-tight ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
           {speak.event}
         </div>
         
@@ -797,63 +854,84 @@ const SpeakingItem = ({ speak, isDarkMode }: { speak: Speaking, isDarkMode: bool
             );
           })}
         </div>
+        </div>
       </div>
     </div>
   </div>
-);
+  );
+};
 
-const InterviewItem = ({ interview, isDarkMode }: { interview: Interview, isDarkMode: boolean }) => (
+const InterviewItem = ({ interview, isDarkMode }: { interview: Interview, isDarkMode: boolean }) => {
+  const { ref, isInView } = useInView({ threshold: 0.1 });
+  
+  return (
   <a 
+    ref={ref as any}
     href={interview.link}
     target="_blank"
     rel="noopener noreferrer"
-    className={`group block p-3 rounded-xl border-2 border-transparent transition-all duration-200 hover:-translate-y-0.5 ${
+    className={`group block p-3 rounded-xl border-2 border-transparent transition-all duration-200 hover:-translate-y-0.5 mobile-tap-animation mobile-hover-lift ${
+      isInView ? 'in-view' : ''
+    } ${
       isDarkMode 
         ? 'hover:bg-gray-800 hover:border-gray-600' 
-        : 'hover:bg-white hover:border-black hover:shadow-[2px_2px_0_0_#000]'
+        : 'hover:bg-white hover:border-black hover:shadow-[2px_2px_0_0_#000] mobile-tap-shadow'
     }`}
   >
-    <div className="flex gap-3">
-      {/* Left column: Date + Thumbnail */}
-      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 flex-shrink-0 max-w-[120px] sm:max-w-none">
-        {/* Date */}
-        <div className={`flex-shrink-0 w-full sm:w-28 flex items-center justify-start sm:justify-center`}>
-          <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
-            isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
-          }`}>
-            {interview.date}
-          </span>
-        </div>
-
-        {/* Thumbnail */}
-        {interview.imageUrl ? (
-          <div className={`block flex-shrink-0 w-full sm:w-28 aspect-video rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
-            <img src={interview.imageUrl} alt={interview.title} className="w-full h-full object-cover" />
-          </div>
-        ) : (
-          <div
-            className={`flex flex-shrink-0 w-full sm:w-28 aspect-video rounded overflow-hidden relative items-center justify-center ${
-              isDarkMode
-                ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
-                : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
-            }`}
-            aria-hidden="true"
-          >
-            <div
-              className={`absolute inset-0 ${
-                isDarkMode
-                  ? 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
-                  : 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
-              }`}
-            />
-            <MessageSquare size={14} className={isDarkMode ? 'text-gray-300' : 'text-gray-700'} />
-          </div>
-        )}
+    {/* Date + Media - Mobile only */}
+    <div className="sm:hidden mb-2 flex items-center gap-3">
+      <div className="w-20 flex-shrink-0">
+        <span className={`text-xs font-bold font-mono py-1 rounded border block text-center w-full ${
+          isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
+        }`} style={{ fontSize: '10px' }}>
+          {interview.date}
+        </span>
       </div>
+      <div className={`text-xs font-bold leading-tight flex-1 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+        {interview.media}
+      </div>
+    </div>
+    
+    {/* Thumbnail + Title - Mobile / Full layout - Desktop */}
+    <div className="flex gap-3 items-center sm:items-start">
+      {/* Date - Desktop */}
+      <div className="hidden sm:flex flex-shrink-0 w-28 items-center justify-center">
+        <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
+          isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
+        }`}>
+          {interview.date}
+        </span>
+      </div>
+
+      {/* Thumbnail */}
+      {interview.imageUrl ? (
+        <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-video rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
+          <img src={interview.imageUrl} alt={interview.title} className="w-full h-full object-cover" />
+        </div>
+      ) : (
+        <div
+          className={`flex flex-shrink-0 w-20 sm:w-28 aspect-video rounded overflow-hidden relative items-center justify-center ${
+            isDarkMode
+              ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
+              : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
+          }`}
+          aria-hidden="true"
+        >
+          <div
+            className={`absolute inset-0 ${
+              isDarkMode
+                ? 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
+                : 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
+            }`}
+          />
+          <MessageSquare size={14} className={isDarkMode ? 'text-gray-300' : 'text-gray-700'} />
+        </div>
+      )}
 
       {/* Content */}
       <div className="flex-1 min-w-0 flex flex-col justify-center py-0.5">
-        <div className={`text-xs font-bold leading-tight mb-0.5 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+        {/* Media - Desktop */}
+        <div className={`hidden sm:block text-xs font-bold leading-tight mb-0.5 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
           {interview.media}
         </div>
         <h3 className={`text-sm font-bold leading-tight group-hover:text-blue-500 transition-colors ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
@@ -862,62 +940,82 @@ const InterviewItem = ({ interview, isDarkMode }: { interview: Interview, isDark
       </div>
       
       <ExternalLink size={16} className={`flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity ${isDarkMode ? 'text-gray-500' : 'text-black'}`} />
-    </div>
+      </div>
   </a>
-);
+  );
+};
 
-const WritingItem = ({ title, source, date, link, imageUrl, isDarkMode }: any) => (
+const WritingItem = ({ title, source, date, link, imageUrl, isDarkMode }: any) => {
+  const { ref, isInView } = useInView({ threshold: 0.1 });
+  
+  return (
   <a 
+    ref={ref as any}
     href={link}
     target="_blank"
     rel="noopener noreferrer"
-    className={`group block p-3 rounded-xl border-2 border-transparent transition-all duration-200 hover:-translate-y-0.5 ${
+    className={`group block p-3 rounded-xl border-2 border-transparent transition-all duration-200 hover:-translate-y-0.5 mobile-tap-animation mobile-hover-lift ${
+      isInView ? 'in-view' : ''
+    } ${
       isDarkMode 
         ? 'hover:bg-gray-800 hover:border-gray-600' 
-        : 'hover:bg-white hover:border-black hover:shadow-[2px_2px_0_0_#000]'
+        : 'hover:bg-white hover:border-black hover:shadow-[2px_2px_0_0_#000] mobile-tap-shadow'
     }`}
   >
-    <div className="flex gap-3">
-      {/* Left column: Date + Thumbnail */}
-      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 flex-shrink-0 max-w-[120px] sm:max-w-none">
-        {/* Date */}
-        <div className={`flex-shrink-0 w-full sm:w-28 flex items-center justify-start sm:justify-center`}>
-          <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
-            isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
-          }`}>
-            {date}
-          </span>
-        </div>
-
-        {/* Thumbnail */}
-        {imageUrl ? (
-          <div className={`block flex-shrink-0 w-full sm:w-28 aspect-video rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
-            <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
-          </div>
-        ) : (
-          <div
-            className={`flex flex-shrink-0 w-full sm:w-28 aspect-video rounded overflow-hidden relative items-center justify-center ${
-              isDarkMode
-                ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
-                : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
-            }`}
-            aria-hidden="true"
-          >
-            <div
-              className={`absolute inset-0 ${
-                isDarkMode
-                  ? 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
-                  : 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
-              }`}
-            />
-            <BookOpen size={14} className={isDarkMode ? 'text-gray-300' : 'text-gray-700'} />
-          </div>
-        )}
+    {/* Date + Source - Mobile only */}
+    <div className="sm:hidden mb-2 flex items-center gap-3">
+      <div className="w-20 flex-shrink-0">
+        <span className={`text-xs font-bold font-mono py-1 rounded border block text-center w-full ${
+          isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
+        }`} style={{ fontSize: '10px' }}>
+          {date}
+        </span>
       </div>
+      <div className={`text-xs font-bold leading-tight flex-1 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+        {source}
+      </div>
+    </div>
+    
+    {/* Thumbnail + Title - Mobile / Full layout - Desktop */}
+    <div className="flex gap-3 items-center sm:items-start">
+      {/* Date - Desktop */}
+      <div className="hidden sm:flex flex-shrink-0 w-28 items-center justify-center">
+        <span className={`text-xs font-bold font-mono px-2 py-1 rounded border ${
+          isDarkMode ? 'bg-gray-800 border-gray-600 text-gray-400' : 'bg-gray-100 border-gray-300 text-gray-600'
+        }`}>
+          {date}
+        </span>
+      </div>
+
+      {/* Thumbnail */}
+      {imageUrl ? (
+        <div className={`block flex-shrink-0 w-20 sm:w-28 aspect-video rounded overflow-hidden ${isDarkMode ? 'ring-2 ring-gray-600' : 'ring-2 ring-black'}`}>
+          <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
+        </div>
+      ) : (
+        <div
+          className={`flex flex-shrink-0 w-20 sm:w-28 aspect-video rounded overflow-hidden relative items-center justify-center ${
+            isDarkMode
+              ? 'ring-2 ring-gray-600 bg-gradient-to-br from-gray-700 to-gray-800'
+              : 'ring-2 ring-black bg-gradient-to-br from-gray-100 to-gray-200'
+          }`}
+          aria-hidden="true"
+        >
+          <div
+            className={`absolute inset-0 ${
+              isDarkMode
+                ? 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
+                : 'opacity-40 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.08)_1px,transparent_0)] bg-[size:10px_10px]'
+            }`}
+          />
+          <BookOpen size={14} className={isDarkMode ? 'text-gray-300' : 'text-gray-700'} />
+        </div>
+      )}
 
       {/* Content */}
       <div className="flex-1 min-w-0 flex flex-col justify-center py-0.5">
-        <div className={`text-xs font-bold leading-tight mb-0.5 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+        {/* Source - Desktop */}
+        <div className={`hidden sm:block text-xs font-bold leading-tight mb-0.5 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
           {source}
         </div>
         <h3 className={`text-sm font-bold leading-tight group-hover:text-blue-500 transition-colors line-clamp-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
@@ -927,8 +1025,9 @@ const WritingItem = ({ title, source, date, link, imageUrl, isDarkMode }: any) =
 
       {/* Arrow Icon */}
       <ExternalLink size={16} className={`flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity ${isDarkMode ? 'text-gray-500' : 'text-black'}`} />
-    </div>
+      </div>
   </a>
-);
+  );
+};
 
 export default Portfolio;

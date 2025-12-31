@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Custom animations */
 @keyframes fadeInUp {
   from {
@@ -12,8 +17,52 @@
   }
 }
 
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hoverLift {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out;
+}
+
+/* スマホ・タブレット用：画面に入ったときにホバーと同じアニメーション */
+@media (hover: none) and (pointer: coarse) {
+  .mobile-hover-lift.in-view {
+    animation: hoverLift 0.4s ease-out;
+  }
+  
+  /* タップ時にホバーと同じアニメーション効果 */
+  .mobile-tap-animation:active {
+    transform: translateY(-4px);
+    transition: transform 0.1s ease-out;
+  }
+  
+  .mobile-tap-shadow:active {
+    box-shadow: 0 6px 0 0 #000 !important;
+  }
+  
+  .mobile-tap-shadow-dark:active {
+    box-shadow: 0 6px 0 0 rgba(75, 85, 99, 1) !important;
+  }
 }
 
 /* Line clamp utility */
