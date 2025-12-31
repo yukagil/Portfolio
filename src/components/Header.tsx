@@ -4,7 +4,7 @@ import { Moon, Sun, Tent, ArrowRight, ArrowLeft } from 'lucide-react';
 interface HeaderProps {
   isDarkMode: boolean;
   onToggleTheme: () => void;
-  currentPage: 'home' | 'services';
+  currentPage: 'home' | 'services' | 'projects';
 }
 
 export default function Header({ isDarkMode, onToggleTheme, currentPage }: HeaderProps) {

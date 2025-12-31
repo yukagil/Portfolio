@@ -131,12 +131,12 @@ export default function Services({ isDarkMode, setIsDarkMode }: ServicesProps) {
     ],
     consultationMethods: [
       {
-        purpose: '特定の相談事項があるなら',
+        purpose: '匿名で相談したい',
         method: 'マシュマロ',
         description: '匿名で気軽に質問・相談ができます。具体的な悩みや疑問を気軽に投げかけてください。',
         link: 'https://marshmallow-qa.com/uos17sgwv5gcfe4?t=TsB6aG&utm_medium=url_text&utm_source=promotion',
         linkText: 'マシュマロで質問',
-        badges: []
+        badges: ['匿名', '無償']
       },
       {
         purpose: '単発で対面相談したいなら',
@@ -149,7 +149,7 @@ export default function Services({ isDarkMode, setIsDarkMode }: ServicesProps) {
       {
         purpose: '継続的なサポートが欲しいなら',
         method: '定期コーチング',
-        description: '月2~4回のオンラインMTGとSlackによる非同期サポートで、あなたの成長を継続的に支援します。',
+        description: '月2~4回のオンラインMTGとSlack等による非同期サポートで、あなたの成長を継続的に支援します。',
         link: 'https://twitter.com/yukagil',
         linkText: 'お問い合わせ',
         badges: ['有償']
@@ -234,7 +234,7 @@ export default function Services({ isDarkMode, setIsDarkMode }: ServicesProps) {
                 }`}
               >
                 <span>💼</span>
-                <span>企業向けコーチング</span>
+                <span>企業向け：プロダクトマネジメント支援</span>
               </a>
 
               <a
@@ -246,7 +246,7 @@ export default function Services({ isDarkMode, setIsDarkMode }: ServicesProps) {
                 }`}
               >
                 <span>👥</span>
-                <span>個人向けコーチング</span>
+                <span>個人向け：プロダクトコーチング</span>
               </a>
 
               <a
@@ -258,7 +258,7 @@ export default function Services({ isDarkMode, setIsDarkMode }: ServicesProps) {
                 }`}
               >
                 <span>🚀</span>
-                <span>個人プロダクト開発</span>
+                <span>個人プロジェクト</span>
               </a>
             </div>
           </div>
@@ -442,7 +442,7 @@ export default function Services({ isDarkMode, setIsDarkMode }: ServicesProps) {
                 isDarkMode ? 'text-gray-300' : 'text-gray-700'
               }`}>
                 <span className="relative inline-block">
-                  <span className="relative z-10">相談方法は以下の3パターン</span>
+                  <span className="relative z-10">ご相談内容に応じた窓口をご利用ください</span>
                   <span className={`absolute bottom-1 left-0 right-0 h-2 -z-0 ${
                     isDarkMode 
                       ? 'bg-yellow-400/40' 
@@ -473,9 +473,20 @@ export default function Services({ isDarkMode, setIsDarkMode }: ServicesProps) {
                       <h4 className={`text-xl font-black tracking-tight mb-3 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>
                         {item.method}
                       </h4>
-                      <p className={`text-sm mb-4 font-medium leading-relaxed ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                      <p className={`text-sm mb-3 font-medium leading-relaxed ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                         {item.description}
                       </p>
+                      {item.method === 'Granty PM' && (
+                        <p className={`text-xs mb-4 leading-relaxed ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>
+                          ※ 目安：5,000円程度 / 1時間
+                        </p>
+                      )}
+                      {item.method === '定期コーチング' && (
+                        <p className={`text-xs mb-4 leading-relaxed ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>
+                          ※ 目安：パーソナルジム程度
+                        </p>
+                      )}
+                      {item.method !== 'Granty PM' && item.method !== '定期コーチング' && <div className="mb-4"></div>}
                       <a
                         href={item.link}
                         target="_blank"
